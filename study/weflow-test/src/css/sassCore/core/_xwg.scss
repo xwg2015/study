@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@import "./css3";
+//-----------------------------------------------------
+// xwg常用css
+//
+//-----------------------------------------------------
+
+
+// 移动端1px边框问题
+// 在IOS retina屏中设置的1px边框实际显示为2px
+//-----------------------------------------------------
+@mixin retina-border($direction:all, $size:1px, $borderColor:$borderColor) {
+    position: relative;
+
+    &:before {
+        content: "";
+        @include box-sizing(border-box);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200%;
+        height: 200%;
+
+        @if $direction == all {
+            border: $size solid $borderColor;
+        }
+        @else if $direction == top {
+            border-top: $size solid $borderColor;
+        }
+        @else if $direction == right {
+            border-right: $size solid $borderColor;
+        }
+        @else if $direction == bottom {
+            border-bottom: $size solid $borderColor;
+        }
+        @else if $direction == left {
+            border-left: $size solid $borderColor;
+        }
+        @include scale(0.5);
+        @include transform-origin(0% 0%);
+    }
+}

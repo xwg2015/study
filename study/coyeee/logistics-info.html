@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——查看物流</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="layout-body body-page-logistics-info">
+    <section class="page-logistics-info">
+        <header class="layout-header mod-layout-header clearfix">
+            <div class="title">查看物流</div>
+            <a href="" class="link-back"><</a>
+        </header>
+        <section class="layout-main">
+            <div class="info">
+                <div class="pic">
+                    <img src="./img/test2.jpg" alt="">
+                </div>
+                <ul class="text">
+                    <li>物流状态<i style="visibility:hidden;">：</i><span>正在派件</span></li>
+                    <li>承运来源：顺丰快递</li>
+                    <li>运单编号：768944578655</li>
+                    <li>官方电话：95338</li>
+                </ul>
+            </div>
+            <div class="detail">
+                <div class="title">物流跟踪</div>
+                <div class="list">
+                    <div class="line"></div>
+                    <ul>
+                        <li class="arrive">
+                            <dl>
+                                <dt>周五  2016-05-27</dt>
+                                <dd>
+                                    <i class="dot active"></i>
+                                    <div class="time">14:02:57</div>
+                                    <div class="state">【福田香密湖营业点】的派件员【韦树宁】正在派件 电话:<span class="phone">15012689268</span></div>
+                                </dd>
+                                <dd>
+                                    <i class="dot"></i>
+                                    <div class="time">14:02:57</div>
+                                    <div class="state">【福田香密湖营业点】已收入</div>
+                                </dd>
+                                <dd>
+                                    <i class="dot"></i>
+                                    <div class="time">07:36:54</div>
+                                    <div class="state">由【广东深圳公司】发往【福田香密湖营业点】</div>
+                                </dd>
+                                <dd>
+                                    <i class="dot"></i>
+                                    <div class="time">07:34:42</div>
+                                    <div class="state">快件已到达【广东深圳公司】 扫描员是【9101】上一站是【上海航空部】</div>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt>周三  2016-05-25</dt>
+                                <dd>
+                                    <i class="dot"></i>
+                                    <div class="time">22:37:32</div>
+                                    <div class="state">由【上海航空部】发往【广东深圳航空部】</div>
+                                </dd>
+                                <dd>
+                                    <i class="dot"></i>
+                                    <div class="time">20:28:00</div>
+                                    <div class="state">由【上海陈行公司】发往【上海浦东中转部】</div>
+                                </dd>
+                                <dd>
+                                    <i class="dot"></i>
+                                    <div class="time">19:24:57</div>
+                                    <div class="state">【上海陈行公司】的收件员【1号称台】已收件</div>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var firstTime = $(".time").eq(0).offset().top;
+        var lastTime = $(".time").eq($(".time").length - 1).offset().top;
+
+        $(".line").css("height", lastTime - firstTime);
+    });
+</script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——登录</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body>
+    <!-- 弹出弹层 就要将mod-mask和mod-modal设置为display:block  -->
+    <section class="mod-mask" style="display:block;"></section>
+    <section class="mod-modal" style="display:block;">
+        <div class="hd"></div>
+        <div class="bd">密码重置成功</div>
+        <div class="ft close">OK</div>
+    </section>
+    <section class="page-log-reg page-login">
+        <header class="mod-layout-header layout-header-log-reg clearfix">
+            <div class="title">登录</div>
+            <a href="" class="link-reg">注册</a>
+        </header>
+        <section class="main">
+            <ul class="form-list">
+                <li class="input-item">
+                    <i class="icon icon-user"></i>
+                    <input type="text" placeholder="使用手机号登录">
+                    <a href="javascript:;" class="code">获取验证码</a>
+                </li>
+                <li class="input-item">
+                    <i class="icon icon-pw"></i>
+                    <input type="password" placeholder="输入密码或验证码">
+                </li>
+                <li class="login-item">
+                    <a href="javascript:;" class="mod-btn btn-login">立即登录</a>
+                </li>
+                <li class="forget-item">
+                    <a href="javascript:;" class="link-forget">忘记密码？</a>
+                </li>
+            </ul>
+            <div class="other-login">
+                <div class="hd">其他登录方式</div>
+                <ul class="bd clearfix">
+                    <li>
+                        <a href="#">
+                            <i class="icon icon-weixin"></i>
+                            <span>微信账号登录</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon icon-qq"></i>
+                            <span>QQ账号登录</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon icon-taobao"></i>
+                            <span>淘宝账号登录</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer class="mod-layout-footer">
+            <div>Copyright 2012 www.coyeee.com All Rights Reserved</div>
+            <div>粤ICP备 3432432号</div>
+        </footer>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script>
+    $(function(){
+        var oMask = $(".mod-mask");
+        var oModal = $(".mod-modal");
+
+        oMask.on("click", function(){
+            $(this).hide();
+            oModal.hide();
+        });
+
+        oModal.find(".close").on("click", function(){
+            oMask.hide();
+            $(this).parents(".mod-modal").hide();
+        });
+    });
+</script>
+</html>

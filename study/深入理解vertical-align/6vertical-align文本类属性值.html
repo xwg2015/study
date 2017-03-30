@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertial-align文本类属性值</title>
+	<link rel="stylesheet" href="public.css">
+	<script src="http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertial-align文本类属性值</h1>
+
+		<ol type="1">
+			<li>
+				text-top
+				<div>
+				定义：<br>
+				盒子的顶部和父级content area的顶部对齐
+				</div>
+			</li>
+			<li>
+				text-bottom
+				<div>
+				定义：<br>
+				盒子的底部和父级content area的底部对齐
+				</div>
+			</li>
+		</ol>
+		<br><br>
+
+
+		<h5>举个栗子：</h5>
+		<p>
+			img { vertical-align: text-top;}
+		</p>
+		<div class="example example1" style="font-size: 18px;line-height: 300px;">
+			<img src="img/1.jpg" style="vertical-align: text-top" alt="">
+			<span style="font-size: 18px!important;">18px</span>
+			<span style="font-size: 36px!important;">36px</span>
+			<span style="font-size: 54px!important;">54px</span>
+			<!-- <img src="img/2.jpg" style="vertical-align: bottom;" alt=""> -->
+		</div>
+		
+		设置容器字体大小：<br>
+		<input class="input1" name="input1" type="radio" value="18" checked="checked">18px
+		<input class="input1" name="input1" type="radio" value="36">36px
+		<input class="input1" name="input1" type="radio" value="54">54px
+		<br><br>
+		<script>
+			$(".input1").on("click", function(){
+				$(".example1").css("font-size", $(this).val()+"px")
+			});
+		</script>
+
+		<span class="red">并且：</span><br>
+		<p>1.元素vertical-align垂直对齐的位置与前后元素都没有关系</p>
+		<p>2.元素vertical-align垂直对齐的位置与行高没有关系，只与字体大小有关</p>
+		<br><br>
+
+		<span class="red">实际应用：</span>
+		<p>兼容性较好，应用于表情图片（或原始尺寸背景图标）与文字的对齐效果</p>
+		
+
+		vertical-align实现上述应用
+		<p>1.默认基线对齐</p>
+		<p>
+			img { vertical-align: baseline;}
+		</p>
+		<div style="line-height: 30px; font-size: 14px;">
+			<img src="img/emoji.jpg" width="24" style="vertical-align: baseline;" alt="">
+			<span>张三</span>
+		</div>
+		<p><span class="red">缺点：</span>图标偏上</p>
+		<br><br>
+
+
+
+		<p>2.顶线或者底线对齐</p>
+		<p>
+			img { vertical-align: top;} <br>
+			img { vertical-align: bottom;}
+		</p>
+		<div style="line-height: 30px; font-size: 14px;">
+			<img src="img/emoji.jpg" width="24" style="vertical-align: top;" alt="">
+			<span>张三</span>
+
+			<img src="img/1.jpg" alt="">
+		</div>
+		<p><span class="red">缺点：</span>虽然表面看似很完美，但是隐藏大坑的。因为它会受其他内联元素影响，造成巨大定位偏差</p>
+		<br><br>
+
+
+		<p>3.中线对齐</p>
+		<p>
+			img { vertical-align: middle;}
+		</p>
+		<div style="line-height: 30px; font-size: 14px;">
+			<img src="img/emoji.jpg" width="24" style="vertical-align: top;" alt="">
+			<span>张三</span>
+		</div>
+		<p><span class="red">缺点：</span>中线也是不错的选择，但是需要恰好的文字大小以及兼容性要求不高</p>
+		<br><br>
+
+
+		<p>4.文本底部对齐</p>
+		<p>
+			img { vertical-align: text-bottom;}
+		</p>
+		<div style="line-height: 30px; font-size: 14px;">
+			<img src="img/emoji.jpg" width="24" style="vertical-align: text-bottom;" alt="">
+			<span>张三</span>
+		</div>
+		<p><span class="red">优点：</span>使用文本底部较合适，不受行高以及其他内联元素影响</p>
+		<br><br>
+</body>
+</html>

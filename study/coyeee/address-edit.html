@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——收货地址</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="body-page-address-edit">
+    <section class="page-address-edit" id="J-page-address-edit">
+        <header class="mod-layout-header clearfix">
+            <div class="title">修改收货地址</div>
+            <a href="" class="link-back"><</a>
+        </header>
+        <section class="main">
+            <ul>
+                <li><span class="key">收货人：</span><input type="text" value="张三"></li>
+                <li><span class="key">手机：</span><input type="text" value="15845624595"></li>
+                <li>
+                    <span class="key">地区：</span>
+                    <span>
+                        <select name="" id="">
+                            <option value="">西藏自治区</option>
+                        </select>
+                    </span><i>|</i>
+                    <span>
+                        <select name="" id="">
+                            <option value="">深圳市</option>
+                        </select>
+                    </span><i>|</i>
+                    <span>
+                        <select name="" id="">
+                            <option value="">罗湖区</option>
+                        </select>
+                    </span>
+                </li>
+                <li class="li-address"><span class="key">地址：</span><textarea>深圳市福田区深新中心A座33层</textarea></li>
+                <li><span class="key">邮件：</span><input type="text" value="518001"></li>
+                <!-- 如果原来的地址就是默认地址的话  icon-radio换成icon-radio-active即可  -->
+                <li><span class="set-default"><i class="icon icon-radio"></i>设置为默认地址</span></li>
+            </ul>
+            <div class="save"><a href="" class="btn-save">保存收货地址</a></div>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        var addressEditWrap = $("#J-page-address-edit");
+        addressEditWrap.find("li:last-child").on("click", function(){
+            if($(this).find(".icon").hasClass("icon-radio")){
+                $(this).find(".icon").addClass("icon-radio-active").removeClass("icon-radio");
+                $(this).css("color", "#cc5628");
+            }else{
+                $(this).find(".icon").addClass("icon-radio").removeClass("icon-radio-active");
+                $(this).css("color", "#4c4c4c");
+            }
+        });
+
+    });
+</script>
+</html>

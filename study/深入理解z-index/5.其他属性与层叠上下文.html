@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h2>1.z-index值不为auto的flex项(父元素display:flex|inline-flex)</h2>
+        <div class="box" style="width:300px; background-color:red;">
+            <div style="z-index:auto;">
+                <img style="position:relative; left:-50px; top:50px; z-index:-1;" style="" src="test.jpeg" width="200" height="200" alt="" />
+            </div>
+        </div>
+        <button type="button" class="btn1">设置容器为display:flex;</button>
+        <br><br><br>
+
+
+        <h2>2.元素的opacity值不是1</h2>
+        <div class="box" style="width:300px; background-color:red;">
+            <div style="z-index:1;">
+                <img style="position:relative; left:-50px; top:50px; z-index:-1;" style="" src="test.jpeg" width="200" height="200" alt="" />
+            </div>
+        </div>
+        <button type="button" class="btn2">设置容器为opacity!=1;</button>
+        <br><br><br>
+
+
+        <h2>3.元素的transform值不是none</h2>
+        <div class="box" style="width:300px; background-color:red;">
+            <div style="z-index:1;">
+                <img style="position:relative; left:-50px; top:50px; z-index:-1;" style="" src="test.jpeg" width="200" height="200" alt="" />
+            </div>
+        </div>
+        <button type="button" class="btn3">设置容器为transform!=none;</button>
+        <br><br><br>
+
+
+        <script type="text/javascript">
+            $(".btn1").on("click", function(){
+                $(this).prev().css("display", "flex");
+            });
+            $(".btn2").on("click", function(){
+                $(this).prev().css("opacity", "0.5");
+            });
+            $(".btn3").on("click", function(){
+                $(this).prev().css("transform", "rotate(45deg)");
+            });
+        </script>
+    </body>
+</html>

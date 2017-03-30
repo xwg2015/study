@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertial-align线类属性值</title>
+	<link rel="stylesheet" href="public.css">
+	<script src="http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertial-align线类属性值</h1>
+
+		<ol type="1">
+			<li>
+				bottom <span class="red">（最常见的）</span>
+				<div>
+				定义：<br>
+				a.inline, inline-block元素：元素底部和整行的底部对齐<br>
+				b.table-cell元素：类似于表格里面的valign:middle
+				</div>
+			</li>
+			<li>
+				top(与bottom对立)
+				<div>
+				定义：<br>
+				a.inline, inline-block元素：元素底部和整行的顶部对齐<br>
+				b.table-cell元素：类似于表格里面的valign:top
+				</div>
+			</li>
+			<li>
+				middle<span class="red">（较为特殊）</span>
+				<div>
+				定义：<br>
+				a.inline, inline-block元素：元素的垂直中心点和父元素基线上1/2的x高度处对齐<br>
+				b.table-cell元素：单元格中垂直居中对齐
+				</div>
+			</li>
+		</ol>
+		<br><br>
+
+
+		<h5>举几个栗子：</h5>
+		<p>
+			img { vertical-align:bottom;}
+		</p>
+		<div class="example">
+			<span>文字x</span>
+			<img src="img/1.jpg" style="vertical-align: bottom" alt="">
+		</div>
+		<br><br>
+		
+		<p>
+			.test-text { vertical-align:bottom;}
+		</p>
+		<div class="example">
+			<table>
+				<tr>
+					<td width="20%">这是一段文字这是一段文字</td>
+					<td>
+						<img src="img/1.jpg" alt="">
+						<span>x</span>
+					</td>
+					<td style="vertical-align: bottom;">测试文字</span></td>
+				</tr>
+			</table>
+		</div>
+		<br><br>
+
+		<p>
+			img { vertical-align:middle;}
+		</p>
+		<div class="example" style="line-height: 300px; position: relative; font-size: 18px;">
+			<img src="img/1line.jpg" style="vertical-align: middle;" alt="">
+			<span>x</span>
+			<div style="position: absolute; left: 0; top: 150px; width: 100%; height: 0; border-top: 1px solid red;"></div>
+		</div>
+		<br><br>
+</body>
+</html>

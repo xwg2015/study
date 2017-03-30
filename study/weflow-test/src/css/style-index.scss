@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import "./sassCore/base";
+
+
+.box {
+    @include clearfix();
+    width: 400px;
+    height: 400px;
+    background-color: green;
+    margin: 100px auto 0;
+
+    .box1, .box2 {
+        width: 200px;
+        @include float();
+    }
+
+    .box1 {
+        background-color: red;
+    }
+
+    .box2 {
+        background-color: blue;
+    }
+
+    ul>li {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .icon {
+        position: relative;
+        top: 8px;
+        display: inline-block;
+        background-size: cover;
+        @include transform(scale(.5));
+    }
+
+    .icon1 {
+        width: 25px;
+        height: 25px;
+        background-image: url(../slice/icon1.png);
+    }
+
+    .icon2 {
+        width: 40px;
+        height: 34px;
+        background-image: url(../slice/icon2.png);
+    }
+
+    .icon3 {
+        width: 40px;
+        height: 34px;
+        background-image: url(../slice/icon3.png);
+    }
+
+    .icon4 {
+        width: 32px;
+        height: 34px;
+        background-image: url(../slice/icon4.png);
+    }
+}

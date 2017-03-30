@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——重置手机号码</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="body-page-reset-phone">
+    <!-- 弹出弹层 就要将mod-mask和mod-modal设置为display:block  -->
+    <section class="mod-mask" style="display:block;"></section>
+    <section class="mod-modal" style="display:block;">
+        <div class="hd"></div>
+        <div class="bd">密码重置成功</div>
+        <div class="ft close">OK</div>
+    </section>
+    <section class="page-reset-phone">
+        <section class="main">
+            <div class="input phone">
+                <i class="icon icon-phone"></i>
+                <input type="text" placeholder="请输入手机号码">
+                <i class="icon icon-close-o"></i>
+            </div>
+            <div class="input code">
+                <i class="icon icon-email"></i>
+                <input type="text" value="" placeholder="请输入短信验证码">
+                <a href="#">获取验证码</a>
+            </div>
+            <div class="btn">
+                <a href="#">保存</a>
+            </div>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var oMask = $(".mod-mask");
+        var oModal = $(".mod-modal");
+
+        oMask.on("click", function(){
+            $(this).hide();
+            oModal.hide();
+        });
+
+        oModal.find(".close").on("click", function(){
+            oMask.hide();
+            $(this).parents(".mod-modal").hide();
+        });
+
+        $(".icon-close-o").on("click", function(){
+            $(this).prev().val("");
+        });
+    });
+</script>
+</html>

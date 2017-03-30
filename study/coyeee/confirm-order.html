@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——确认订单信息</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="layout-body body-page-confirm-order">
+    <section class="mod-mask" id="J-mod-mask"></section>
+    <section class="bottom-wrap" id="J-bottom-wrap">
+        <input type="hidden" class="sale1" value="0">
+        <input type="hidden" class="sale2" value="0">
+        <div class="bottom-tab">
+            <a href="javascript:;">优惠劵</a>
+            <a href="javascript:;" class="active">积分</a>
+            <a href="javascript:;">激活</a>
+        </div>
+        <div class="bt-content bt-content1" style="display:none;">
+            <div class="bd">
+                <ul>
+                    <li data-sale="50">省50元：满减活动 满180元</li>
+                    <li data-sale="20">省20元：满减活动 满140元</li>
+                    <li data-sale="10">省10元：满减活动 满100元</li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="btn sale-btn sale1-btn">确认</a>
+        </div>
+        <div class="bt-content bt-content2">
+            <div class="bd">
+                <div class="points">
+                    可用
+                    <span class="minus">-</span>
+                    <span class="num">1100</span>
+                    <span class="plus">+</span>
+                    积分
+                </div>
+                <div class="rmb">
+                    ￥<span class="num">110</span>
+                </div>
+            </div>
+            <a href="javascript:;" class="btn sale-btn sale2-btn">确认</a>
+        </div>
+        <div class="bt-content bt-content3" style="display:none;">
+            <div class="bd">
+                <div class="code">
+                    <input type="text" value="1234" />
+                    <input type="text" value="2345" />
+                    <input type="text" value="4567" />
+                    <input type="text" value="5678" />
+                </div>
+            </div>
+            <a href="javascript:;" class="btn">激活</a>
+        </div>
+    </section>
+    <section class="page-confirm-order">
+        <header class="layout-header mod-layout-header clearfix">
+            <div class="title">确认订单信息</div>
+            <a href="" class="link-back"><</a>
+        </header>
+        <section class="layout-main">
+            <section class="tab">
+                <div class="send-list inner">
+                    <a href="javascript:;" class="active">快递物流</a>
+                    <a href="javascript:;">到店自取</a>
+                </div>
+            </section>
+            <section class="t-content">
+                <!-- 快递物流 -->
+                <div class="item t-item">
+                    <div class="hd"><span>显示全部地址</span><span class="plus">+</span></div>
+                    <div class="bd">
+                        <ul class="address-list">
+                            <li class="active">
+                                <div class="inner">
+                                    <table>
+                                        <tr>
+                                            <td width="60%">收货人：张三</td>
+                                            <td width="40%" align="right">15823254562</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="60%" valign="bottom">深圳市福田区深南大道1006号国际创新中心A座33层</td>
+                                            <td width="40%" align="right" valign="bottom"><a href="" class="edit">编辑</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="inner">
+                                    <table>
+                                        <tr>
+                                            <td width="60%">收货人：张三</td>
+                                            <td width="40%" align="right">15823254562</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="60%" valign="bottom">深圳市福田区深南大道1006号国际创新中心A座33层</td>
+                                            <td width="40%" align="right" valign="bottom"><a href="" class="edit">编辑</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="inner">
+                                    <table>
+                                        <tr>
+                                            <td width="60%">收货人：张三</td>
+                                            <td width="40%" align="right">15823254562</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="60%" valign="bottom">深圳市福田区深南大道1006号国际创新中心A座33层</td>
+                                            <td width="40%" align="right" valign="bottom"><a href="" class="edit">编辑</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="inner">
+                                    <table>
+                                        <tr>
+                                            <td width="60%">收货人：张三</td>
+                                            <td width="40%" align="right">15823254562</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="60%" valign="bottom">深圳市福田区深南大道1006号国际创新中心A座33层</td>
+                                            <td width="40%" align="right" valign="bottom"><a href="" class="edit">编辑</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 到店自取 -->
+                <div class="item t-item" style="display:none;">
+                    <div class="hd"><span>显示全部门店</span><span class="plus">+</span></div>
+                    <div class="bd">
+                        <ul class="shop-list">
+                            <li class="active">
+                                <div class="pic"><img src="./img/test4.png" width="91" height="62" alt=""></div>
+                                <div class="text">
+                                    <div class="name">COCO PARK</div>
+                                    <div class="address">深圳市福田区福华三路COCO PARK</div>
+                                    <div class="time">营业时间：9：00—20：00</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pic"><img src="./img/test4.png" width="91" height="62" alt=""></div>
+                                <div class="text">
+                                    <div class="name">COCO PARK</div>
+                                    <div class="address">深圳市福田区福华三路COCO PARK</div>
+                                    <div class="time">营业时间：9：00—20：00</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pic"><img src="./img/test4.png" width="91" height="62" alt=""></div>
+                                <div class="text">
+                                    <div class="name">COCO PARK</div>
+                                    <div class="address">深圳市福田区福华三路COCO PARK</div>
+                                    <div class="time">营业时间：9：00—20：00</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="hd"><span>支付方式</span><span></span></div>
+                    <div class="bd">
+                        <ul class="pay-list">
+                            <li>
+                                <span>微信支付</span>
+                                <span><i class="icon icon-radio-active"></i></span>
+                            </li>
+                            <li>
+                                <span>支付宝支付</span>
+                                <span><i class="icon icon-radio"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="hd"><span>订单信息</span><span></span></div>
+                    <div class="bd">
+                        <ul class="detail-list">
+                            <li>
+                                <dl class="mod-dl-item">
+                                    <dd class="list-item">
+                                        <ul>
+                                            <li>
+                                                <div class="pic">
+                                                    <img src="./img/test3.jpg" alt="">
+                                                </div>
+                                                <div class="text">
+                                                    <div class="title">2016春夏新品曼妮芬加一尚品光面女内衣美背聚拢立体杯文胸M12-002</div>
+                                                    <div class="info">
+                                                        <span class="color">颜色分类：黑色</span>
+                                                        <span class="size">尺码：170(XL)</span>
+                                                    </div>
+                                                    <div class="price">
+                                                        <span class="num"><span>￥256</span>×1</span>
+                                                        <span class="sale">优惠：10元</span>
+                                                        <span class="subtotal">小计:256(含运费0元)</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="pic">
+                                                    <img src="./img/test3.jpg" alt="">
+                                                </div>
+                                                <div class="text">
+                                                    <div class="title">2016春夏新品曼妮芬加一尚品光面女内衣美背聚拢立体杯文胸M12-002</div>
+                                                    <div class="info">
+                                                        <span class="color">颜色分类：黑色</span>
+                                                        <span class="size">尺码：170(XL)</span>
+                                                    </div>
+                                                    <div class="price">
+                                                        <span class="num"><span>￥256</span>×1</span>
+                                                        <span class="sale">优惠：10元</span>
+                                                        <span class="subtotal">小计:256(含运费0元)</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="way send-way">
+                                <span class="key">配送方式</span>
+                                <span class="value">快递物流</span>
+                            </li>
+                            <li class="way pay-way">
+                                <span class="key">支付方式</span>
+                                <span class="value">微信</span>
+                            </li>
+                            <li class="way sale" id="J-sale">
+                                <span class="key">优惠·抵现</span>
+                                <span class="value"><span class="sale-num" id="J-sale-num"></span><i class="icon icon-next-gray"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <br>
+        </section>
+        <section class="layout-footer mod-order-submit">
+            <div class="left">
+                <div class="price">实付：￥256</div>
+                <div class="detail">包含商品：1件</div>
+            </div>
+            <div class="right"><a href="javascript:;" id="J-confirm-btn">提交订单</a></div>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script src="./js/all.js"></script>
+<script>
+    $(function(){
+        handleRadioPay($(".pay-list"), "li");
+        handleRadioSend($(".send-list"), "a");
+        // 模拟单选框
+        function handleRadioPay(wrap, itemStr){
+            var index = 0;
+            wrap.find(itemStr).on("click", function(){
+                wrap.find(itemStr).find("i").attr("class", "icon icon-radio");
+                $(this).find("i").attr("class", "icon icon-radio-active");
+                index = $(this).index();
+                handleRadioResult("pay", index);
+            });
+        }
+        function handleRadioSend(wrap, itemStr){
+            var index = 0;
+            wrap.find(itemStr).on("click", function(){
+                wrap.find(itemStr).removeClass("active");
+                $(this).addClass("active");
+                index = $(this).index();
+                handleRadioResult("send", index);
+            });
+        }
+        function  handleRadioResult(type, index){
+            var send = ["快递物流", "到店自取"];
+            var pay = ["微信", "支付宝"];
+            if(type == "send"){
+                $(".send-way").find(".value").html(send[index]);
+            }else{
+                $(".pay-way").find(".value").html(pay[index]);
+            }
+        }
+        // 地址 门店 选择
+        $(".shop-list li, .address-list li").on("click", function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            if($(this).parent().hasClass("address-list")){
+                $(".address-list .inner").css("border-bottom", "1px solid #e6e6e6");
+                $(this).prev().find(".inner").css("border-bottom", "1px solid transparent");
+            }
+        });
+        // 快递物流  到店自取  切换
+        $(".tab a ").on("click", function(){
+            $(".t-item").eq($(this).index()).show().siblings(".t-item").hide();
+        });
+        // 展开  收起
+        $(".item .plus").on("click", function(){
+            var itemH = $(this).parent().next().find("li").eq(0).height();
+            var allH = itemH * $(this).parent().next().find("li").size();
+
+            if($(this).html() == "+"){
+                $(this).html("-");
+                $(this).parent().next().find("ul").css("height", allH);
+            }else{
+                $(this).html("+");
+                $(this).parent().next().find("ul").css("height", itemH);
+            }
+        });
+
+
+        // 订单提交弹层
+        var bottomWrap = $("#J-bottom-wrap");
+        var modMask = $("#J-mod-mask");
+        var sale = $("#J-sale");
+        var saleNum1 = bottomWrap.find(".sale1");
+        var saleNum2 = bottomWrap.find(".sale2");
+        var saleNum = $("#J-sale-num");
+
+        tab($(".bottom-tab"), ".bt-content");
+
+        sale.on("click", function(){
+            modMask.show();
+            bottomWrap.css("bottom", "0px");
+        });
+
+        modMask.on("click", function(){
+            $(this).hide();
+            bottomWrap.css("bottom", "-192px");
+        });
+
+
+        // 优惠券选中
+        bottomWrap.find(".bt-content1 li").on("click", function(){
+            $(this).addClass("active").siblings("li").removeClass("active");
+            saleNum1.val($(this).data("sale"));
+        });
+
+        // 积分
+        var oMinus = bottomWrap.find(".minus");
+        var oPointNum = bottomWrap.find(".points .num");
+        var oRmbNum = bottomWrap.find(".rmb .num");
+        var oPlus = bottomWrap.find(".plus");
+
+        saleNum2.val(parseInt(oPointNum.html())/10);
+
+        oMinus.on("click", function(){
+            if(parseInt(oPointNum.html()) > 1){
+                oPointNum.html(parseInt(oPointNum.html()) - 100);
+                oRmbNum.html(parseInt(oPointNum.html())/10);
+            }
+            saleNum2.val(parseInt(oPointNum.html())/10);
+        });
+
+        oPlus.on("click", function(){
+            oPointNum.html(parseInt(oPointNum.html()) + 100);
+            oRmbNum.html(parseInt(oPointNum.html())/10);
+            saleNum2.val(parseInt(oPointNum.html())/10);
+        });
+
+        // 优惠确认按钮
+        bottomWrap.find(".sale-btn").on("click", function(){
+            if($(this).hasClass("sale1-btn")){
+                saleNum.html("-￥"+saleNum1.val());
+            }else{
+                saleNum.html("-￥"+saleNum2.val());
+            }
+            modMask.hide();
+            bottomWrap.css("bottom", "-192px");
+        });
+    });
+</script>
+</html>

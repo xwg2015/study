@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<style type="text/css">
+	.box { float: left; width: 400px; height: 400px;}
+	.list { float: right; }
+	li	{ margin-bottom: 10px; }
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input").on('click', function(){
+				$(".box").css($(this).val(), "hidden");
+			})
+
+			$("button").on("click",function(){
+				$(".box").css({"overflow-x":"visible","overflow-y":"visible"});
+			})
+		});
+	</script>
+</head>
+<body>
+	<h2>overflow-x和overflow-y（IE8+）</h2>
+
+	<div class="wrap">
+		<h5>设置box的overflow-x或者overflow-y为hidden时表现</h5>
+		<div class="box"><img src="test.jpg" width="440" height="440"></div>
+		<ul class="list">
+			<li>
+				<input type="button" value="overflow-x" />
+			</li>
+			<li>
+				<input type="button" value="overflow-y" />
+			</li>
+			<li>
+				<button>重置</button>
+			</li>
+		</ul>
+	</div>
+
+	<br style="clear: both;"><br><br><br><br><br><br><br><br>
+	<strong>如果overflow-x和overflow-y值相同，等同于overflow</strong>
+	<br>
+	<strong>如果overflow-x和overflow-y值不同，且其中一个属性的值被赋值visible，另外一个被赋值auto,scroll,hidden,这个visible会被重置为auto</strong>
+</body>
+</html>

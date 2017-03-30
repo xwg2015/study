@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——发布评价</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="layout-body body-page-evaluate">
+    <section class="page-evaluate">
+        <section class="layout-header">
+            <header class="mod-layout-header clearfix">
+                <div class="title">发布评价</div>
+                <a href="" class="link-back"><</a>
+            </header>
+        </section>
+        <section class="layout-main main">
+            <ul>
+                <li>
+                    <div class="evaluate">
+                        <div class="pic">
+                            <img src="./img/test3.jpg" alt="" />
+                        </div>
+                        <div class="text">
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                    <dl class="photo">
+                        <dt><div class="inner"></div></dt>
+                        <dd>
+                            <div class="inner">
+                                <img src="./img/test3.jpg" alt="" />
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="inner">
+                                <img src="./img/test3.jpg" alt="" />
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="inner">
+                                <img src="./img/test3.jpg" alt="" />
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="inner">
+                                <img src="./img/test3.jpg" alt="" />
+                            </div>
+                        </dd>
+                    </dl>
+                    <div class="grade">
+                        <div class="detail">
+                            <span>4分 满意</span>
+                            <span>描述基本一致，还挺满意</span>
+                        </div>
+                        <div class="stars">
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o"></i>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="evaluate">
+                        <div class="pic">
+                            <img src="./img/test3.jpg" alt="" />
+                        </div>
+                        <div class="text">
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                    <dl class="photo">
+                        <dt><div class="inner"></div></dt>
+                    </dl>
+                    <div class="grade">
+                        <div class="detail">
+                            <span>4分 满意</span>
+                            <span>描述基本一致，还挺满意</span>
+                        </div>
+                        <div class="stars">
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o-active"></i>
+                            <i class="icon icon-star-o"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="layout-footer footer">发布评价</section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script src="./js/all.js"></script>
+<script>
+    $(function(){
+
+        var Evaluate = {
+            init: function(){
+                this.render();
+                this.bind();
+            },
+
+            render: function(){
+                this.stars = $(".stars");
+                this.score = [
+                    "1分 非常不满意",
+                    "2分 不满意",
+                    "3分 一般",
+                    "4分 满意",
+                    "5分 非常满意"
+                ];
+                this.text = [
+                    "描述1",
+                    "描述2",
+                    "描述3",
+                    "描述4",
+                    "描述5"
+                ];
+            },
+
+            bind: function(){
+                var self = this;
+
+                self.stars.find("i").on("click", function(){
+                    var index = $(this).index();
+                    $(this).parent().prev().find("span").eq(0).html(self.score[index]);
+                    $(this).parent().prev().find("span").eq(1).html(self.text[index]);
+
+                    for(var i = 0; i <= self.stars.find("i").length; i++){
+                        $(this).parent().find("i").eq(i).addClass("icon-star-o").siblings().removeClass("icon-star-o-active");
+                    }
+
+                    for(var i = 0; i <= index; i++){
+                        $(this).parent().find("i").eq(i).addClass("icon-star-o-active");
+                    }
+                });
+            }
+        }
+
+        Evaluate.init();
+
+    });
+</script>
+
+</html>

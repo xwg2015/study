@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——分类</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="layout-body">
+    <section class="menu-wrap" id="J-menu-wrap">
+        <div class="hd"><i class="icon icon-close" id="J-icon-close"></i></div>
+        <div class="bd">
+            <ul>
+                <li><a href="javascript:;" data-type="M">M</a></li>
+                <li><a href="javascript:;" data-type="S">S</a></li>
+                <li><a href="javascript:;" data-type="C">C</a></li>
+                <li><a href="javascript:;" data-type="B">B</a></li>
+                <li><a href="javascript:;" data-type="X">X</a></li>
+                <li><a href="javascript:;" data-type="社区">社区</a></li>
+            </ul>
+            <div class="search">
+                <i class="icon icon-search"></i>
+                <input type="text" placeholder="搜索">
+            </div>
+        </div>
+    </section>
+    <section class="page-sort">
+        <section class="layout-header">
+            <header class="layout-header-index clearfix">
+                <div class="left fl">
+                    <i class="icon icon-menu" id="J-icon-menu"></i>
+                </div>
+                <div class="right fr">
+                    <i class="icon icon-cart"></i>
+                    <i class="icon icon-user"></i>
+                </div>
+            </header>
+            <section class="subMenu-wrap" id="J-subMenu-wrap" style="display:block;">
+                <ul>
+                    <li>
+                        <a href="">
+                            <div class="pic"><img src="./img/focus1.jpg" alt=""></div>
+                            <div class="name">文胸</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="pic"><img src="./img/focus1.jpg" alt=""></div>
+                            <div class="name">内裤</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="pic"><img src="./img/focus1.jpg" alt=""></div>
+                            <div class="name">配件</div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <section class="layout-main">
+            <section class="banner-list">
+                <a href="">
+                    <img src="./img/sort_m.jpg" alt="">
+                </a>
+                <a href="">
+                    <img src="./img/sort_s.jpg" alt="">
+                </a>
+                <a href="">
+                    <img src="./img/sort_c.jpg" alt="">
+                </a>
+            </section>
+            <footer class="mod-layout-footer">
+                <div>Copyright 2012 www.coyeee.com All Rights Reserved</div>
+                <div>粤ICP备 3432432号</div>
+            </footer>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script src="./js/all.js"></script>
+<script>
+    $(function(){
+
+        var CoyeeeIndex = {
+
+            init: function(){
+                this.render();
+                this.bind();
+            },
+
+            render: function(){
+                this.iconMenu = $("#J-icon-menu");
+                this.menuContainer = $("#J-menu-wrap");
+                this.subMenuContainer = $("#J-subMenu-wrap");
+                this.iconClose = $("#J-icon-close");
+            },
+
+            bind: function(){
+                var self = this;
+
+                self.iconMenu.on("click", function(){
+                    self.menuContainer.css("top", 0);
+                });
+
+                self.iconClose.on("click", function(){
+                    self.menuContainer.css("top", "-100%");
+                });
+
+                self.menuContainer.find("a").on("click", function(){
+                    self.menuContainer.css("top", "-100%");
+                    self.subMenuContainer.show();
+                });
+            }
+        }
+
+        CoyeeeIndex.init();
+
+    });
+</script>
+</html>

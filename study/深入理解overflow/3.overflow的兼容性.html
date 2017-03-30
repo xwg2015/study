@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<style type="text/css">
+	.box { float: left; width: 400px; height: 400px;}
+	.list { float: right; }
+	li	{ margin-bottom: 10px; }
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#btn1").on('click', function(){
+				$("button").css("overflow","visible")
+			})
+		});
+	</script>
+</head>
+<body>
+<div style="width: 600px;margin-left: auto;margin-right: auto;">
+	<h2>overflow的兼容性</h2>
+
+	<img src="test2.png">
+	<p>从上往下依次是：chrome,IE,ff</p>
+
+	<br><br><br><br>
+	<h2>宽度设置机制</h2>
+
+
+	<div style="width: 400px; height: 100px; overflow: auto;">
+		<div style="width: 100%; height: 200px; background-color: red;"></div>
+	</div>
+	<br><br>
+	<strong>在IE7下会出现横向的滚动条，因为IE7把滚动条的距离也加上了</strong>
+
+
+	<h2>overflow:visible的妙用</h2>
+
+	<h3>IE7下  button的文字越多  按钮两侧的padding留白就越大</h3>
+	<button>一个字</button><button>比你多一个字</button><button>我有好多好多字</button><button>还有谁还有谁还有谁还有谁</button>
+
+	<br><br><br><br>
+	<button id="btn1">见证奇迹的时刻</button>
+	<br><br><br><br>
+
+	<button style="overflow: visible;">一个字</button><button style="overflow: visible;">比你多一个字</button><button style="overflow: visible;">我有好多好多字</button><button style="overflow: visible;">还有谁还有谁还有谁还有谁</button>
+</div>
+</body>
+</html>

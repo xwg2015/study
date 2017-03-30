@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——商品列表</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body>
+    <section class="mod-mask" id="J-mod-mask"></section>
+    <section class="list-sort-wrap" id="J-list-sort-wrap">
+        <dl>
+            <dt>风格</dt>
+            <dd><a href="javascript:;">裸装系列</a></dd>
+            <dd><a href="javascript:;">彩妆系列</a></dd>
+            <dd><a href="javascript:;">呼吸妆系列</a></dd>
+        </dl>
+    </section>
+    <section class="page-list">
+        <header class="mod-layout-header layout-header-list clearfix">
+            <div class="title">
+                <select name="" id="">
+                    <option value="文胸1">文胸1</option>
+                    <option value="文胸2">文胸2</option>
+                    <option value="文胸3">文胸3</option>
+                    <option value="文胸4">文胸4</option>
+                </select>
+            </div>
+            <a href="" class="link-back"><</a>
+        </header>
+        <nav class="nav" id="J-nav-wrap">
+            <ul class="list">
+                <li><a href="#" class="active">销量</a></li>
+                <li><a href="#">新品</a></li>
+                <li><a href="#">收藏</a></li>
+                <li><a href="javascript:;" id="J-filter">筛选</a></li>
+            </ul>
+        </nav>
+        <section class="filter clearfix" id="J-filter-wrap">
+            <ul class="list fl">
+                <li><a href="javascript:;" class="style">风格<i>></i></a></li>
+                <li><a href="javascript:;" class="groups">人群<i>></i></a></li>
+                <li><a href="javascript:;" class="thickness">厚度<i>></i></a></li>
+                <li><a href="javascript:;" class="function">功能<i>></i></a></li>
+            </ul>
+            <a href="javascript:;" class="back-sort fr" id="J-back-sort">></a>
+        </section>
+        <section class="main" id="J-main">
+            <ul class="mod-product-list list clearfix">
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="pic"><img src="./img/test1.jpg" alt=""></div>
+                        <div class="title">无钢圈，收副乳，透气舒服啊啊啊</div>
+                        <div class="info">
+                            <span class="name">M12-001</span>
+                            <span class="price">￥198.00</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script>
+    $(function(){
+
+        var CoyeeeList = {
+
+            init: function(){
+                this.render();
+                this.bind();
+            },
+
+            render: function(){
+                this.iHeight = $(window).height();
+                this.bodyContainer = $("body");
+                this.mainContainer = $("#J-main");
+                this.navContainer = $("#J-nav-wrap");
+                this.filterContainer = $("#J-filter-wrap");
+                this.filter = $("#J-filter");
+                this.backSort = $("#J-back-sort");
+                this.listSortContainer = $("#J-list-sort-wrap");
+                this.modMask = $("#J-mod-mask");
+
+                this.sortCount = this.listSortContainer.find("dd").length;
+
+                this.bodyContainer.css({
+                    "position": "relative",
+                    "height": this.iHeight,
+                    "overflow": "hidden"
+                });
+                this.mainContainer.css("height", this.iHeight-72);
+                this.listSortContainer.css("bottom", -((this.sortCount+1)*25+1));
+            },
+
+            bind: function(){
+                var self = this;
+                var sortIndex = 0;
+
+                self.filter.on("click", function(){
+                    self.navContainer.hide();
+                    self.filterContainer.show();
+                });
+
+                self.backSort.on("click", function(){
+                    self.navContainer.show();
+                    self.filterContainer.hide();
+                });
+
+                self.filterContainer.find(".list a").on("click", function(){
+                    sortIndex = $(this).parent().index();
+                    self.filterContainer.find("a").removeClass("active");
+                    $(this).addClass("active");
+                    $(this).find("i").css("transform", "rotate(-90deg)");
+                    self.modMask.show();
+                    self.listSortContainer.css("bottom", 0);
+                });
+
+                self.modMask.on("click", function(){
+                    $(this).hide();
+                    self.filterContainer.find(".list a").eq(sortIndex).find("i").css("transform", "rotate(90deg)");
+                    self.listSortContainer.css("bottom", -((self.sortCount+1)*25+1));
+                });
+
+                self.listSortContainer.find("dd").on("click", function(){
+                    $(this).addClass("active").siblings("dd").removeClass("active");
+                });
+            }
+        }
+
+        CoyeeeList.init();
+    });
+</script>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<style type="text/css">
+	.box { float: left; width: 400px; height: 400px;}
+	.list { float: right; }
+	li	{ margin-bottom: 10px; }
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+		});
+	</script>
+</head>
+<body>
+	<h2>滚动条出现的条件</h2>
+	overflow的属性为auto或者scroll<br><br>
+	天生自带滚动条的html和textarea元素<br><br>
+
+	<textarea>
+		meta是html中的元标签，其中包含了对应html的相关信息，客户端浏览器或服务器端的程序会根据这些信息进行处理。
+HTTP-EQUIV类似于HTTP的头部协议，它回应给浏览器一些有用的信息，以帮助正确和精确地显示网页内容。
+	</textarea>
+
+
+	<br><br><br><br>
+	<h2>body/html与滚动条</h2>
+
+	<p><strong>无论什么浏览器，默认滚动条均来自于html，而不是body</strong></p>
+
+	<p>IE7-浏览器默认：html{overflow-y:scroll;}</p>
+	<p>IE8+浏览器默认：html{overflow:auto;}</p>
+	<br>
+	<p>单页应用处理的时候：html{overflow:hidden;}即可</p>
+	<p style="color: red;">body{overflow:hidden;} 多余的写法</p>
+
+
+	<br><br><br><br>
+	<h2>JS获取滚动高度</h2>
+	<p>Chrome: document.body.scrollTop</p>
+	<p>fei Chrome: document.documentElement.scrollTop</p>
+
+
+	<p>目前两者不会同时存在</p>
+	<p style="color: red;">
+	兼容写法：
+	var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+	</p>
+
+
+	<br><br><br><br>
+	<h2>overflow的padding-bottom缺失现象</h2>
+	
+
+	<div style="width: 300px; height: 100px; padding: 100px 0; overflow: auto;">
+		<img src="test.jpg" width="200" height="200">
+	</div>
+
+	<h4>只有Chrome浏览器是正常的，其他所有浏览器均会出现padding-bottom缺失的现象</h4>
+
+	<h3 style="color: red;">导致：不一样的scrollHeight（元素内容高度）</h3>
+	<br><br><br><br>
+
+
+	<h2>滚动条的宽度</h2>
+	<div class="box" style="width: 400px;overflow: scroll;">
+		<div id="inner" style="*zoom:1;"></div>
+		<button id="btn1">获取滚动条的宽度</button>
+		<h4 style="color: red">结果：IE7+/chrome/ff 均是17像素</h2>
+	</div>
+
+	<br style="clear: both;">
+	<script type="text/javascript">
+		$("#btn1").on("click",function(){
+			console.log(400-document.getElementById("inner").clientWidth);
+		})
+	</script>
+
+	
+
+
+	<br><br><br><br>
+	<h2>水平居中跳动的问题</h2>
+
+	<p>修复方式：</p>
+	<p>1.html{overflow-y:scroll;}</p>
+	<p>2.动态修复 .wrap{padding-left:calc(100vw-100%)}</p>
+	<h4>其中100vw = 浏览器宽度   100% = 可用内容宽度（IE9+）</h4>
+
+
+	<br><br><br><br>
+	<h2>自定义滚动条</h2>
+
+
+	<ul>
+		<li>整体部分 ::-webkit-scrollbar</li>
+		<li>两端按钮 ::-webkit-scrollbar-button</li>
+		<li>外层轨道 ::-webkit-scrollbar-track</li>
+		<li>内层轨道 ::-webkit-scrollbar-track-piece</li>
+		<li>滚动滑块 ::-webkit-scrollbar-thumb</li>
+		<li>边角 ::-webkit-scrollbar-corner</li>
+	</ul>
+
+	<style type="text/css">
+		::-webkit-scrollbar { width: 8px; height: 8px; }
+		::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,.3); border-radius: 6px; }
+		::-webkit-scrollbar-track { background-color: #ddd; border-radius: 6px; }
+
+	</style>
+	<div class="box" style="width: 457px; height: 300px; overflow: scroll;">
+		<img src="test.jpg">
+	</div>
+
+	<a href="http://manos.malihu.gr/repository/custom-scrollbar/demo/examples/complete_examples.html">JQ滚动条插件</a>
+	<br style="clear: both;">
+
+
+	<br><br><br><br>
+	<h2>IOS原生滚动回调效果</h2>
+
+	<p>-webkit-overflow-scrolling:touch</p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            * { padding: 0; margin: 0;}
+            body { padding-left: 100px;}
+            #box { position: relative; width: 300px; height: 300px;}
+            p { position: absolute; left: 0; bottom: 0; width: 100%; line-height: 30px; background-color: rgba(0,0,0,.6); color: #fff;}
+            .animate {
+                animation-name: fadeIn;
+                animation-duration: 2s;
+                animation-timing-function: ease;
+            }
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+            .red { width: 300px; color: red;}
+        </style>
+    </head>
+    <body>
+        <h1>现象一</h1>
+        <div id="box">
+            <p>一些说明性的文字</p>
+            <img id="img" src="test.jpeg" width="300" height="300" alt="" />
+        </div>
+        <div class="red" style="display:none;">
+            opacity:1普通图片，其他opacity值则新建层叠上下文，层叠顺序z-index:auto级别，跟absolute文字一样，但遵循后来居上准则，于是，淡出的时候，文字是看不见的，知道动画结束。
+        </div>
+        <button type="button" name="button" class="btn">现象解释</button>
+        <br><br><br><br>
+
+        <h1>现象二</h1>
+        .box1 {position:relative; z-index:1;}<br>
+        .img1 {position:absolute; z-index:2;}<br>
+        .box2 {position:relative; z-index:1;}<br>
+        .img2 {position:absolute; left:100px; z-index:1;}<br>
+        <div class="box" style="position:relative; z-index:1;">
+            <img src="test.jpeg" width="300" height="300" alt="" style="position:absolute; z-index:2;"/>
+        </div>
+        <div class="box" style="position:relative; z-index:1;">
+            <img src="test.jpeg" width="300" height="300" alt="" style="position:absolute; left:100px;z-index:1;"/>
+        </div>
+        <div class="red" style="display:none; position:relative; top:300px;">
+            如果定位元素发生嵌套，并且祖先的z-index相同，则参照后来居上原则，前提是z-index值是数值而不是auto。
+        </div>
+        <button type="button" name="button" class="btn" style="position:relative; top:300px;">现象解释</button>
+    </body>
+    <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        document.getElementById('img').onclick = function(){
+            this.className = "animate";
+        }
+
+        $(".btn").on("click", function(){
+            $(this).prev().show(500);
+        })
+    </script>
+</html>

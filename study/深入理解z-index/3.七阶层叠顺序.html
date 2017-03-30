@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+        <style media="screen">
+            .clearfix:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="stacking-order.png" alt="" />
+
+        <p>1.为什么会有层叠水平顺序？</p>
+
+        <p>2.为什么层叠水平顺序是这样的?</p>
+
+        <p>3.为什么inline|inline-block元素会在浮动元素之上？</p>
+
+
+        <br><br><br>
+        <h2>浮动元素与内联元素的关系</h2>
+        <div class="box clearfix" style="width:500px;">
+            <img src="test.jpeg" width="200" height="200" alt="" style="float:left; margin-right:-20px;"/>
+            浮动原本设计的作用就是实现文字环绕图片的效果，如果图片和文字发生重叠，显然，是后面的文字要优先显示的，因为，文字比图片重要。
+        </div>
+
+
+        <br><br><br>
+        <h2>块状元素与内联元素的关系</h2>
+        <div class="box">
+            <span style="display:inline-block; width:300px; height:100px; background-color:red; color:#fff; margin:-30px;">display:inline-blcok</span>
+            <div style="width:300px; height:100px; background-color:blue; color:#fff;">display:block;<br>为什么文字会在上面呢?其实这里的背景色覆盖是因为层叠顺序，但是文字覆盖是因为后来居上原则。</div>
+        </div>
+    </body>
+</html>

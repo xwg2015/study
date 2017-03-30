@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——首页</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="layout-body">
+    <section class="menu-wrap" id="J-menu-wrap">
+        <div class="hd"><i class="icon icon-close" id="J-icon-close"></i></div>
+        <div class="bd bd-sort">
+            <ul>
+                <li><a href="javascript:;" data-type="M">M</a></li>
+                <li><a href="javascript:;" data-type="S">S</a></li>
+                <li><a href="javascript:;" data-type="C">C</a></li>
+                <li><a href="javascript:;" data-type="B">B</a></li>
+                <li><a href="javascript:;" data-type="X">X</a></li>
+                <li><a href="javascript:;" data-type="社区">社区</a></li>
+            </ul>
+            <div class="search">
+                <i class="icon icon-search"></i><span>搜索</span>
+            </div>
+        </div>
+        <div class="bd bd-search" style="display:none;">
+            <div class="search">
+                <i class="icon icon-search"></i><input type="text" placeholder="搜索">
+            </div>
+            <div class="tip">快速链接</div>
+            <ul>
+                <li><a href="">前扣</a></li>
+                <li><a href="">无钢圈</a></li>
+                <li><a href="">聚拢</a></li>
+                <li><a href="">配件</a></li>
+            </ul>
+        </div>
+    </section>
+    <section class="page-index page-404">
+        <header class="layout-header layout-header-index clearfix">
+            <div class="left fl">
+                <i class="icon icon-menu" id="J-icon-menu"></i>
+            </div>
+            <div class="right fr">
+                <i class="icon icon-cart"></i>
+                <i class="icon icon-user"></i>
+            </div>
+        </header>
+        <section class="layout-main">
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script src="./lib/swiper/swiper.jquery.min.js"></script>
+<script src="./js/all.js"></script>
+<script>
+    $(function(){
+
+        var CoyeeeIndex = {
+
+            init: function(){
+                this.render();
+                this.bind();
+            },
+
+            render: function(){
+                this.iconMenu = $("#J-icon-menu");
+                this.menuContainer = $("#J-menu-wrap");
+                this.subMenuContainer = $("#J-subMenu-wrap");
+                this.iconClose = $("#J-icon-close");
+            },
+
+            bind: function(){
+                var self = this;
+
+                var mySwiper = new Swiper (".swiper-container", {
+                    autoplay: 3000,
+                    loop: true,
+                    pagination: ".swiper-pagination"
+                });
+
+                self.iconMenu.on("click", function(){
+                    self.menuContainer.css("top", 0);
+                });
+
+                self.iconClose.on("click", function(){
+                    self.menuContainer.css("top", "-100%");
+                    $(".bd-sort").show();
+                    $(".bd-search").hide();
+                });
+
+                self.menuContainer.find("a").on("click", function(){
+                    self.menuContainer.css("top", "-100%");
+                    self.subMenuContainer.show();
+                });
+
+                $(".bd-sort .search").on("click", function(){
+                    $(this).parents(".bd-sort").hide();
+                    $(".bd-search").show();
+                });
+            }
+        }
+
+        CoyeeeIndex.init();
+
+    });
+</script>
+</html>

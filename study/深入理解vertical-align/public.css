@@ -1,0 +1,35 @@
+body {
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+
+
+.mod-wrap {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.red {
+	color: red;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.example {
+	background-color: #999;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+table { 
+ border-collapse:collapse; 
+ border-spacing:0; 
+} 
+th,td { 
+ padding: 0; 
+}

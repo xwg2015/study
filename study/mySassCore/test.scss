@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import "./sassCore/base";
+
+.box1 {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    @include retina-border(all, 1px, blue);
+    border-color: red;
+}
+
+.box2 {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<style type="text/css">
+	.clear:after { content: ""; display: block; clear: both; }
+	.box { width: 500px;}
+	.list { }
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	li	{ margin-bottom: 10px; }
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input").on('click', function(){
+				$(".box").css("overflow",$(this).val());
+			})
+		});
+	</script>
+</head>
+<body>
+	<h2>BFC(Box Formatting Context)</h2>
+	<p>定义：块级格式化上下文，是独立的渲染区域</p>
+
+	其中，一条触发BFC条件为overflow不为visible
+
+	<h4>BFC应用：</h4>
+	<p>1.清除内部浮动</p>
+	<p>2.防止垂直方向的margin重叠</p>
+	<p>3.两栏自适应布局</p>
+
+
+
+	<br><br><br><br>
+	<h2>overflow清除浮动</h2>
+	<div class="wrap clear">
+		<div class="box" style="border:10px solid red;">
+			<img style="float: left;" src="test.jpg" width="440" height="440">
+		</div>
+	</div>
+	<br>
+	<div class="list">
+		<input type="button" value="visible" />
+		<input type="button" value="hidden" />
+		<input type="button" value="scroll" />
+		<input type="button" value="auto" />
+		<input type="button" value="inherit" />
+	</div>
+
+
+	<p>虽然.clearfix {overflow:hidden; _zoom:1;} (IE7+)可以清除浮动,
+	但是overflow:hidden会把元素外部的东西清除掉，目前清除浮动最佳的方法为：</p>
+	<p>.clearfix { *zoom:1;}</p>
+	<p>.clearfix:after { content:""; display:table; clear:both;}</p>
+
+
+	<br><br><br><br>
+	<h2>overflow防止垂直方向的margin重叠</h2>
+
+
+	<div style="width: 100px; height: 100px; background-color: red; margin: 50px 0;"></div>
+	<div style="overflow: hidden;">
+	<div style="width: 100px; height: 100px; background-color: green; margin: 50px 0;"></div>
+	</div>
+
+
+
+	<br><br><br><br>
+	<h2>流体特性下的自适应布局</h2>
+	<div class="clear">
+		<div style="float: left; width: 100px;">
+			<img src="test.jpg" width="100">
+		</div>
+		<div style="min-height: 200px; background: red; margin-left: 120px;">
+			<div class="clear">
+				<div style="float: left; width: 100px; height: 100px; background-color: green;">我是左边</div>
+				<div style="float: right; width: 100px; height: 100px; background-color: yellow;">我是右边</div>
+			</div>
+			<p><img src="test2.jpg" width="100"></div></p>
+			<!-- <div style="clear: both;"><img src="test2.jpg" width="100"></div> -->
+		</div>
+	</div>
+
+	<br><br><br><br>
+	<h2>overflow与两栏自适应布局</h2>
+	<div class="clear">
+		<div style="float: left; width: 100px; margin-right: 20px;">
+			<img src="test.jpg" width="100">
+		</div>
+		<div style="min-height: 200px; display: inline-block; background: red;">
+			<div class="clear">
+				<div style="float: left; width: 100px; height: 100px; background-color: green;">我是左边</div>
+				<div style="float: right; width: 100px; height: 100px; background-color: yellow;">我是右边</div>
+			</div>
+			<p><img src="test2.jpg" width="100"></div></p>
+			<!-- <div style="clear: both;"><img src="test2.jpg" width="100"></div> -->
+		</div>
+	</div>
+
+
+	<br><br><br><br>
+	<h2>两栏自适应布局(经典写法)</h2>
+
+
+	<h3 style="color: red;">所有能触发BFC的属性表现都是如上表现，但是由于自身的特性，具体表现不一</h3>
+	<ul>
+		<li>1.overflow:hidden;自适应，但是溢出不可见，限制使用场景</li>
+		<li>2.float 包裹性，但破坏布局，无法自适应，只适合块状浮动布局</li>
+		<li>3.position:absolute或fixed; 脱离文档流</li>
+		<li>4.display:inline-block; 包裹性，但是无法自适应</li>
+		<li style="color: red;">5.display:tablle-cell; 包裹性，无溢出特性，绝对宽度也能自适应</li>
+	</ul>
+
+	.box { display:table-cell; width: 2000px;  //IE8+(BFC特性)<br>
+	*display:inline-block; *width: auto;  //IE7-(伪BFC特性)<br>
+	}<br>
+	<div>
+		<div style="float: left; width: 100px; margin-right: 20px;">
+			<img src="test.jpg" width="100">
+		</div>
+		<div style="display:table-cell; width: 999px;*display:inline-block; *width: auto; background-color: red;">
+			<div><img src="test2.jpg" width="100"></div>
+			<div style="width: 300px; background-color: green;">随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么随便写点什么</div>
+		</div>
+	</div>
+	
+
+</body>
+</html>

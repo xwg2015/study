@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="js/vue.js"></script>
+        <script src="js/vue-resource.js"></script>
+        <style media="screen">
+            .gray { background: gray;}
+        </style>
+        <script>
+            window.onload = function(){
+                new Vue({
+
+                    el: "#search",
+
+                    data: {
+                        keyword: "",
+                        result: [],
+                        now: -1
+                    },
+
+                    methods: {
+                        get: function(ev){
+                            if(ev.keyCode == 38 || ev.keyCode == 40) {
+                                return;
+                            }
+
+                            if(ev.keyCode == 13){
+                                window.open("https://www.so.com/s?q=" + this.keyword);
+                                this.now = -1;
+                                this.keyword = '';
+                            }
+
+                            this.$http.jsonp("https://sug.so.360.cn/suggest?callback=suggest_so", {
+                                word: this.keyword
+                            }).then(function(res){
+                                this.result = res.data.s
+                            }, function(res){
+                                console.log("接口请求失败");
+                            })
+                        },
+
+                        up: function(){
+                            this.now--;
+
+                            if(this.now < 0){
+                                this.now = this.result.length -1;
+                            }
+
+                            this.keyword = this.result[this.now];
+                        },
+
+                        down: function(){
+
+                            this.now++;
+
+                            if(this.now > this.result.length -1){
+                                this.now = 0;
+                            }
+
+                            this.keyword = this.result[this.now];
+                        }
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div id="search">
+            <input type="text" v-model="keyword" v-on:keyup="get($event)" v-on:keydown.up.prevent="up()" v-on:keydown.down="down()">
+            <ul>
+                <li v-for="(item, index) in result" v-bind:class="{gray:index==now}">{{item}}</li>
+            </ul>
+            <div v-if="result.length == 0">暂无数据</div>
+        </div>
+    </body>
+</html>

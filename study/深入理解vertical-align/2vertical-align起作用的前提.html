@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertial-align起作用的前提</title>
+	<link rel="stylesheet" href="public.css">
+	<script src="http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<style>
+	.example span {
+		line-height: 10px;
+		vertical-align: 0px;
+	}
+	</style>
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertial-align起作用的前提</h1>
+		<br><br>
+
+		<p>该属性定义<span class="red bold">行内元素</span>的基线相对于该元素所在行的基线的垂直对齐。</p>
+		<ol type="A">
+			<li>
+				1.inline：img, span, strong, em标签... 	<br>
+				2.inline-block: input <span class="red">(IE8+)</span>, button <span class="red">(IE8+)</span>标签...		
+			</li>
+			<li>table-cell: td标签</li>
+		</ol>
+		<br><br>
+
+		<p>总结：<span class="red">默认状态</span>下: 图片，按钮，文字和单元格才能使用vertical-align属性</p>
+		<br><br>
+
+		<p>之所以为默认状态是因为：</p>
+		<ol type="1">
+			<li>display可以更改元素的显示水平</li>
+			<li>CSS声明可以更改元素的显示水平，例如浮动和绝对定位</li>
+		</ol>
+
+		<h5>举个栗子：</h5>
+		<div class="example">
+			<span>文字x</span>
+			<img src="img/1.jpg" alt="">
+		</div>
+		<br><br><br><br>
+	</div>
+</body>
+</html>

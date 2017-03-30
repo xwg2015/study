@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertical-align应用：个数不定的文本内容和图片的垂直居中对齐</title>
+	<link rel="stylesheet" href="public.css">
+	<style>
+		ul {
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			list-style: none;
+			margin-bottom: 0;
+			padding: 20px;
+			border: 1px solid red;
+		}
+
+		li span {
+			line-height: normal;
+			display: inline-block;
+			width: 640px;
+			vertical-align: middle;
+		}
+		li img {
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertical-align应用：个数不定的文本内容和图片的垂直居中对齐</h1>
+		<br><br>
+
+		<h5>实践：</h5>
+		<p style="">
+			ul span { display:inline-block; width: 700px; vertical-align: middle;}<br>
+			ul img { vertical-align: middle;}
+		</p>
+		<ul>
+			<li>
+				<span>文字...(代表很多很多的文字)</span>
+				<img src="img/1.jpg" width="100" alt="">
+			</li>
+			<li>
+				<span>文字文字<br>文字<br>文字文字</span>
+				<img src="img/1.jpg" width="100" alt="">
+			</li>
+			<li>
+				<span>文字文字<br>文字</span>
+				<img src="img/1.jpg" width="100" alt="">
+			</li>
+			<li>
+				<span>文字文字<br>文字<br>文字<br>文字文字</span>
+				<img src="img/1.jpg" width="100" alt="">
+			</li>
+		</ul>
+		<br><br>
+	</div>
+</body>
+</html>

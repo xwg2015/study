@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertical-align失效的情况</title>
+	<link rel="stylesheet" href="public.css">
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertical-align失效的情况</h1>
+		<br><br>
+
+		<h5>举个栗子：</h5>
+		<p>
+			img { vertical-align: middle;}
+		</p>
+		<div class="example" style="height: 300px;/* line-height: 300px; */text-align: center;">
+			<img src="img/1.jpg" style="vertical-align: middle;" alt="">
+		</div>
+		<br><br>
+
+		<p>为什么display:table-cell却可以呢？</p>
+		<h5>再举个栗子：</h5>
+		<p>
+			div { display: table-cell; vertical-align: middle;}
+		</p>
+		<div class="example" style="display: table-cell; width: 800px; height: 300px; text-align: center; vertical-align: middle;">
+			<img src="img/1.jpg" style="" alt="">
+		</div>
+		<br><br>
+
+		<h5 class="red">错误栗子：</h5>
+		<p>
+			div { display: table-cell;}
+			img { vertical-align: middle;}
+		</p>
+		<div class="example" style="display: table-cell; width: 800px; height: 300px; text-align: center;">
+			<img src="img/1.jpg" style="vertical-align: middle;" alt="">
+		</div>
+		<br><br>
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <img src="stacking-order.png" alt="" />
+        <br><br><br>
+
+
+        <h2>定位元素与内联元素的关系</h2>
+        <div class="box">
+            <img class="img1" src="test.jpeg" width="200" height="200" />
+            <img style="margin-left:-100px;" src="test.jpeg" width="200" height="200" />
+        </div>
+        <button type="button" class="btn">设置图片一为定位元素</button>
+        <script type="text/javascript">
+            $(".btn").on("click", function(){
+                $(".img1").css("position", "relative");
+            });
+        </script>
+        <br><br><br>
+
+
+        <h2>z-index创建层叠上下文</h2>
+        .box {position:relative; background-color:red;}<br>
+        .img {position:relative; margin-left:-100px;margin-top:50px;}<br>
+
+        <div class="box box2" style="position:relative; width:300px; margin-left:200px; background-color:red;">
+            <img class="img2" style="position:relative; margin-left:-100px; margin-top:50px;" src="test.jpeg" width="200" height="200" alt="" />
+        </div><br>
+        <button type="button" class="btn1">设置图片z-index为-1</button>
+        <button type="button" class="btn2">设置容器z-index为0</button>
+        <script type="text/javascript">
+            $(".btn1").on("click", function(){
+                $(".img2").css("z-index", "-1");
+            });
+            $(".btn2").on("click", function(){
+                $(".box2").css("z-index", "0");
+            });
+        </script>
+    </body>
+</html>

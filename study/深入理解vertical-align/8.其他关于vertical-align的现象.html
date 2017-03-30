@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertial-align其他现象</title>
+	<link rel="stylesheet" href="public.css">
+	<style>
+	div {
+
+	}
+
+	.a {
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+		border: 1px solid red;
+	}
+
+	.b {
+		display: inline-block;
+		width: 120px;
+		height: 60px;
+		border: 1px solid red;
+		border-radius:4px;
+	}
+	</style>
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertial-align其他现象</h1>
+		
+
+<!-- 		<div>
+			<span class="b" style="line-height: 60px;">a按钮</span>
+			<span class="b" style="line-height: 0;">b按钮</span>
+		</div> -->
+
+		<div>
+			<span class="a"></span>
+			<span class="a" style="">x-现象</span>
+		</div>
+		
+		<p>
+			现象解释：<br>
+			inline-block的基线是正常流中最后一个line box的基线，除非，这个line box里面没有line boxes或者本身overflow属性的计算值不是visible，这种情况下基线就是margin边缘
+		</p>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+</body>
+</html>

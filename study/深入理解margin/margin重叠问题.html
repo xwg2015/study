@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .box {
+                height: 30px;
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>margin重叠问题</h1><br><br>
+
+        <h3>相邻的兄弟元素</h3>
+        <div class="box" style="margin-bottom:30px;"></div>
+        <div class="box" style="margin-top:30px;"></div>
+
+
+        <br><br>
+
+
+        <h3>父级和第一个或者最后一个子元素</h3>
+        <hr style="padding:0; margin:0;">
+        <div style="background-color: red;">
+            <div style="">内容</div>
+        </div>
+
+
+        <br><br>
+
+
+        <h3>空的block元素</h3>
+        <hr style="padding:0; margin:0;">
+        <div style="background-color:red; overflow:hidden;">
+            <div style="margin:30px 0;"></div>
+        </div>
+
+
+        <br><br>
+    </body>
+</html>

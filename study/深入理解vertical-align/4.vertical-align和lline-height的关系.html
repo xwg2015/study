@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertial-align和line-height的关系</title>
+	<link rel="stylesheet" href="public.css">
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertial-align和line-height的关系</h1>
+
+		<ol type="1">
+			<li>
+				vertical-align百分比就是相对于line-height值计算的
+			</li>
+			<li>
+				图片下边缘间隙就是有vertical-align和line-height造成的
+			</li>
+		</ol>
+		<br><br>
+
+
+		<h5>举几个栗子：</h5>
+		<p>
+			.text { line-height: 30px; vertical-align: 50%; }
+		</p>
+		<div class="example">
+			<img src="img/1.jpg" style="vertical-align: bottom" alt="">
+			<span style="line-height: 30px; vertical-align: 50%;">X</span>
+		</div>
+		<br><br>
+
+		<span class="red bold" style="font-size: 50px;">=</span>
+
+		<p>
+			.text { line-height: 30px; vertical-align: 15px; }
+		</p>
+		<div class="example">
+			<img src="img/1.jpg" style="vertical-align: bottom" alt="">
+			<span style="line-height: 30px; vertical-align: 15px;">X</span>
+		</div>
+		<br><br>
+
+
+
+		<p>
+			img { }
+		</p>
+		<div class="example" style="line-height: 300px;"><img src="img/1.jpg" style="vertical-align: middle;" alt=""></div>
+		<br><br>
+		
+		<p>
+		so, 我们可以根据以上特性  实现不定宽高的图片在容器中的<span class="red bold">近似</span>垂直居中,<br>
+		<span class="red bold">并且</span>, 此方法兼容IE7+<br>
+		<span class="red bold">注意的是,</span>img标签与父容器之间换行或者空格分开
+		</p>
+</body>
+</html>

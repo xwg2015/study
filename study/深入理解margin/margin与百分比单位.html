@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            .box {
+                width: 400px;
+                height: 200px;
+                margin: 0 auto;
+                background-color: gray;
+            }
+
+            .wrap {
+                position:relative;
+                width:1000px;
+                margin: 0 auto;
+                background-color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>margin与百分比单位.html</h1><br><br>
+
+        <h3>普通元素的百分比</h3>
+        <div class="box">
+            <img src="./test.jpg" width="200" alt="" style="margin:10%;"/>
+        </div>
+
+
+        <br><br>
+
+
+        <h3>绝对定位元素的百分比</h3>
+        <div class="wrap">
+            <div class="box">
+                <img src="./test.jpg" width="200" alt="" style="margin:10%;"/>
+            </div>
+        </div>
+
+
+        <br><br><br><br>
+
+
+        <h3>宽高2：1自适应矩形</h3>
+        <div style="width:400px; height:400px; margin: 0 auto; background-color:gray; resize:both;overflow:auto;">
+            <div style="background-color:red;overflow:hidden;">
+                <div style="margin:50%;">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

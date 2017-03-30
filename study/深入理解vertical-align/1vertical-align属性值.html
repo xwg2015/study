@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertial-align的属性值</title>
+	<link rel="stylesheet" href="public.css">
+	<script src="http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<style>
+	.example span {
+		line-height: 10px;
+		vertical-align: 0px;
+	}
+	</style>
+</head>
+<body>
+	<div class="mod-wrap">
+		<h1>vertial-align的属性值</h1>
+
+		<ol type="1">
+			<li>inhreit</li>
+			<li>线类：<span class="red">baseline(默认)</span>, top, middle, bottom</li>
+			<li>文本类：text-top, text-bottom</li>
+			<li>上标下标类：sub, super</li>
+			<li>数值百分比类：20px, 2em, 20%... <span class="red">(都支持负值，行为表现一致)</span></li>
+		</ol>
+		<br><br><br><br>
+
+		<p>行为表现一致：在baseline对齐基础上上下偏移对应数值的大小</p>
+
+
+		<h5>举个栗子：</h5>
+		<div class="example">
+			<span>文字x</span>
+			<img src="img/1.jpg" alt="">
+		</div>
+		<br><br><br><br>
+
+		<p>百分比类的差异：vertical-align的百分比值是相对于line-height计算的</p>
+	</div>
+</body>
+</html>

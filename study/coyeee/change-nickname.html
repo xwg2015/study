@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加一尚品COYEEE——修改昵称</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+<body class="body-page-change-nickname">
+    <section class="page-change-nickname">
+        <section class="main">
+            <div class="input">
+                <input type="text" value="多啦A梦">
+                <i class="icon icon-close-o"></i>
+            </div>
+            <div class="btn">
+                <a href="#">保存</a>
+            </div>
+        </section>
+    </section>
+</body>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".icon-close-o").on("click", function(){
+            $(this).prev().val("");
+        });
+    });
+</script>
+</html>
