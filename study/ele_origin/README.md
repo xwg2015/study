@@ -1,6 +1,6 @@
-# sell
+# Vue.js高仿饿了么外卖App 最火前端框架 1.0升级2.0
 
-> sell app
+[视频教程地址](http://coding.imooc.com/class/74.html)
 
 ## Build Setup
 
@@ -23,5 +23,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

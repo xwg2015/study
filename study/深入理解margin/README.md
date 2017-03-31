@@ -1,4 +1,5 @@
 # 深入理解margin笔记
+[视频教程地址](http://www.imooc.com/learn/680)
 
 ## 一、margin与容器尺寸
 
