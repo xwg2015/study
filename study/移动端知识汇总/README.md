@@ -1,4 +1,4 @@
-# 移动端知识点汇总(持续更新中)
+# 移动端知识点与常见bugs汇总(持续更新中)
 
 
 ## 一、PC端的屏幕尺寸和窗口尺寸
@@ -74,4 +74,67 @@ webkit有个私有属性：-webkit-tap-highlight-color
 最佳解决方案：  
 通过 **:active** 伪类就能轻松实现，加上给document添加空的touchstart方法，兼容部分手机:active失效的情况。
 
-## 七、
+## 七、sticky footer效果实现
+当页面内容不足一屏时，产品往往希望footer贴在浏览器最底部，当页面内容超过一屏时，就紧跟内容。
+在移动端实现这样的效果很简单，可以不用JS判断内容高度。
+方案1：
+```css
+main {
+  min-height: calc(100vh - header高度 - footer高度)
+}
+```
+不足之处在于，calc这个属性会随鼠标移动不停计算的，耗性能
+
+方案2：
+```css
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
+```
+移动端最完美解决方案。
+
+
+## 八、基于rem的flexible布局
+淘宝的flexible库可以很好的适配多终端，具体介绍可查看这篇文章
+[《使用Flexible实现手淘H5页面的终端适配》](http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html)
+
+但是在后续的使用中发现：
+
+1.图片icon，若要使用rem单位，background-size:contain;即可，如果直接使用rem单位会在部分安卓机上面出现icon截掉部门的情况。
+
+2.边框，若使用rem，会在部分安卓里不显示边框出来，推荐直接使用px单位，flexible设置html的data-dpr属性就是很好的解决了移动端retina屏上的一像素边框问题。
+
+...
+
+
+## 九、移动端的flex兼容
+这里首推sass的sasscore库，flex兼容写的很全面。
+而autoprefixer，虽然能设置兼容范围，
+```js
+postcss: [
+  require('autoprefixer')({
+    browsers: ['> 5%']
+  })
+]
+```
+但是flex的兼容在移动端并不好使。
+例如在ipad上面不支持，实际上兼容没写好，所有属性尽量加上-webkit-前缀。
+```css
+.flex-layout {
+  display: -webkit-flex
+  -webkit-align-items: center
+  -webkit-flex-wrap: wrap
+  -webkit-justify-content: space-between
+  ...
+}
+```
+
+## 十、移动端怪异bugs
+1.ipad上使用背景渐变会有莫名的一根黑线
+2.iphone5（320设备宽）上header上使用z-index会导致与下面的dom元素中间出现一根白线
+...
