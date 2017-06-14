@@ -1,0 +1,44 @@
+{
+	"name": "xwg_task",
+	"version": "0.0.2",
+	"manifest_version": 2,
+
+	// 简单描述
+	"description": "a task_tip for xwg",
+	"icons": {
+		"16": "image/icon16.png",
+		"48": "image/icon48.png"
+	},
+	// 选择默认语言
+	// "default_locale": "en",
+
+	// 浏览器小图表部分
+	"browser_action": {
+		"default_title": "任务进度",
+		"default_icon": "image/icon16.png",
+		"default_popup": "html/task.html"
+	},
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	// 引入一个脚本
+	// "content_scripts": [
+	// 	{
+	// 		"js": [
+	// 			"script/vue.js",
+	// 			"script/task.js"
+	// 		],
+	// 		// 在什么情况下使用该脚本
+	// 		"matches": [
+	// 			"http://*/*",
+	// 			"https://*/*"
+	// 		],
+	// 		// 什么情况下运行【文档加载开始】
+	// 		"run_at": "document_start",
+	// 		"all_frames": true
+	// 	}
+	// ],
+	// 应用协议页面
+	"permissions": [
+		"http://*/*",
+		"https://*/*"
+	]
+}
