@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	body { font-family: '微软雅黑'; font-size: 14px;}
+	h1, h2, h3, h4, h5 { font-size: 14px; }
+	li { list-style: none; }
+	button { background: #fff; border: none; outline: none;}
+	.input {
+		position: relative;
+		top: -2px;
+		height: 20px;
+		padding: 0 6px;
+	    border: 1px solid #d3dadf;
+	    border-radius: 4px;
+	    outline: none;
+	}
+	.name-input {
+		width: 180px;
+		border: none;
+		border-bottom: 1px solid #d3dadf;
+	}
+	/*滚动条 start*/  
+	::-webkit-scrollbar {
+	  width: 4px;
+	}
+
+	/*定义滑块 内阴影+圆角*/  
+	::-webkit-scrollbar-thumb {
+	  background: rgba(50,64,87,0.2);
+	  border-radius: 4px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+	  background: rgba(50,64,87,0.3);
+	}
+	#app { width: 340px; margin: auto;}
+	.header, .btns-tool { padding: 0 20px; margin-bottom: 20px; }
+	.list {
+		height: 370px;
+		padding: 0 20px;
+		overflow-y: scroll;
+	}
+	.list li {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px; 
+		margin-bottom: 10px; 
+		position:relative;
+	    display: inline-block;
+	    background: -webkit-gradient(linear, 0% 20%, 0% 1000%, from(#fff), to(#fff), color-stop(.1,#f3f3f3));
+	    border: 1px solid #ccc;
+	    -webkit-box-shadow: 0px 3px 30px rgba(0, 0, 0, .1) inset;
+	    -webkit-border-bottom-right-radius: 6px 50px;    
+	}
+	.list li:before {
+		content: '';
+	    width: 50px;
+	    height: 100px;
+	    position:absolute;
+	    bottom:0; right:0;
+	    -webkit-box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.1);
+	    z-index:-1;
+	    -webkit-transform: translate(-35px,-40px)
+	                       skew(0deg,30deg)
+	                       rotate(-25deg);
+	}
+	.list li:after {
+		content: '';
+	    width: 100px;
+	    height: 100px;
+	    top:0; left:0;
+	    position:absolute;
+	    display: inline-block;
+	    z-index:-1;
+	    -webkit-box-shadow: -10px -10px 10px rgba(0, 0, 0, 0.2);
+	    -webkit-transform: rotate(2deg)
+	                       translate(20px,25px)
+	                       skew(20deg);
+	}
+	.li-item {
+		margin: 10px 0;
+	}
+	.status {
+		position: absolute;
+		right: -5px;
+		top: 10px;
+		width: 60px;
+		line-height: 20px;
+		font-size: 12px;
+		text-align: center;
+		color: #fff;
+		background-color: #23ade5;
+	}
+	.status:after {
+		content: '';
+		position: absolute;
+		bottom: -5px;
+		right: 0;
+		width: 0;
+	    height: 0;
+	    border-top: 5px solid rgba(35, 173, 229, .8);
+	    border-right: 5px solid transparent;
+	}
+	.tool { text-align: right; }
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	h1 {  
+		color: #23ade5;
+	}
+	.btn {
+		width: 89px;
+	    height: 28px;
+	    display: inline-block;
+	    border-radius: 4px;
+	    font-size: 14px;
+	    letter-spacing: .13px;
+	    line-height: 26px;
+	    box-sizing: border-box;
+	    cursor: pointer;
+	}
+	.add-btn { 
+		margin-right: 12px;
+		border: 1px solid #23ade5;
+		color: #23ade5;
+	}
+	.add-btn:hover {
+		background-color: rgba(35, 173, 229, .1)
+	}
+	.add-btn:active {
+		color: #fff;
+		background-color: #23ade5;
+	}
+	.update-btn {
+		border: 1px solid #ff8e29;
+		color: #ff8e29;
+	}
+	.update-btn:hover {
+		background-color: rgba(255, 165, 0, .1)
+	}
+	.update-btn:active {
+		color: #fff;
+		background-color: #ff8e29;
+	}
+	.delete-btn {
+		width: 36px;
+	    height: 20px;
+	    line-height: 18px;
+	    font-size: 10px;
+		border: 1px solid #ff6464;
+		color: #ff6464;
+	}
+	.delete-btn:hover {
+		background-color: rgba(255, 100, 100, .1)
+	}
+	.delete-btn:active {
+		color: #fff;
+		background-color: #ff6464;
+	}
+	</style>
+</head>
+<body>
+	<section id="app">
+		<header class="header">
+			<img src="../image/cheer.gif" width="100" alt="">
+			<h1>哔哩哔哩 (゜-゜)つロ 干杯~</h1>
+		</header>
+		<div class="btns-tool">
+			<button v-on:click="handleAdd" class="btn add-btn">新建任务</button>
+			<button v-on:click="handleUpdate" class="btn update-btn">更新任务</button>
+		</div>
+		<div class="task-container">
+			<ul class="list">
+				<li v-for="(item, index) in list">
+					<div class="status" v-if="handleStatus(index, list)">{{handleStatus(index, list)}}</div>
+					<div class="li-item title">{{index+1}}.&nbsp;<input type="text" class="input name-input" v-model="item.task_name"></div>
+					<div class="li-item is-experience">
+						<label for="checkbox">
+							<input type="checkbox" class="checkbox" id="checkbox" v-model="item.is_experience">&nbsp;体验
+						</label>
+					</div>
+					<div class="li-item test-time">提测时间: <input type="date" class="input" v-model="item.test_time"></div>
+					<div class="li-item online-time">上线时间: <input type="date" class="input" v-model="item.online_time"></div>
+					<div class="tool">
+						<button v-on:click="handleDelete(index, list)" class="btn delete-btn">删除</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<script type=text/javascript src=../script/vue.js></script>
+	<script type=text/javascript src=../script/popup.js></script>
+	<script type=text/javascript src=../script/background.js></script>
+</body>
+</html>
