@@ -4,6 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// Muse-ui
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+Vue.use(MuseUI)
+
+// Material Design Icons
+import './static/css/materialdesignicons.min.css'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
