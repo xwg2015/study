@@ -9,25 +9,33 @@
       <h2 class="username">欢迎回来，<br/>{{ info.username }}</h2>
     </main>
     <footer class="footer">
-      <mu-raised-button label="在路上" class="demo-raised-button" labelPosition="after" primary>
-        <i class="mdi mdi-road mdi-18px"></i>
-      </mu-raised-button>
-      <mu-raised-button label="目的地" class="demo-raised-button" labelPosition="after" primary>
-        <i class="mdi mdi-map-marker-radius mdi-18px"></i>
-      </mu-raised-button>
+      <x-button class="btn" plain @click.native="go('Way')"><i class="icon iconfont icon-shizhong"></i>在路上</x-button>
+      <x-button class="btn" plain><i class="icon iconfont icon-dangdi"></i>目的地</x-button>
     </footer>
   </section>
 </template>
 
 <script>
+import { XButton } from 'vux'
+
 export default {
   name: 'index',
+  components: {
+    XButton
+  },
   data () {
     return {
       info: {
         username: '喵姬的专属铲屎官',
         avater: '//i0.hdslb.com/bfs/face/c12a6f15ae8b1ecc7a4fdd1ec555f09882d2dd04.jpg'
       }
+    }
+  },
+  methods: {
+    go (page) {
+      this.$router.push({
+        name: page
+      })
     }
   }
 }
@@ -39,6 +47,7 @@ export default {
     flex-direction column
     height 100%
     h1
+      line-height 2
       text-indent 20px
       font-size 24px
       color #7e57c2
@@ -70,17 +79,14 @@ export default {
       .username
         text-align center
         font-size 16px
-        color rgba(0,0,0,.6)
+        color rgba(0,0,0,0.8)
     .footer
       display flex
       flex 6
       align-items center
       justify-content center
-    .mdi
-      margin-left 20px
-    .mu-raised-button
-      margin: 0 10px
-    .mu-raised-button-label
-      padding-left 8px
-      padding-right 20px
+      .iconfont
+        margin-right 10px
+      .btn
+        margin 0 10px
 </style>

@@ -2,12 +2,9 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
-}
-
-module.exports = {
+// vux2必须配合vux-loader使用
+const vuxLoader = require('vux-loader')
+const webpackConfig = {
   entry: {
     app: './src/main.js'
   },
@@ -73,3 +70,19 @@ module.exports = {
     ]
   }
 }
+
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: [
+    {
+      name: 'vux-ui'
+    },
+    {
+      name: 'less-theme',
+      path: 'src/styles/theme.less'
+    }
+  ]
+})

@@ -10,6 +10,10 @@ export default {
 }
 </script>
 
+<style>
+  @import './styles/font/iconfont.css';
+</style>
+
 <style lang="stylus">
   h1, h2, h3, h4, h5
     font-size 14px
@@ -21,5 +25,7 @@ export default {
     height 100%
   body
     font-family '微软雅黑'
+  li
+    list-style none
 </style>
 
