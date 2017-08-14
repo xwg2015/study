@@ -9,12 +9,12 @@
       <router-view></router-view>
     </div>
     <tabbar v-model="index" v-if="isLogin" class="tabbar">
-      <tabbar-item>
+      <tabbar-item link="/check">
         <img slot="icon" src="./assets/icon-check.png">
         <img slot="icon-active" src="./assets/icon-check-active.png">
         <span slot="label">检查</span>
       </tabbar-item>
-      <tabbar-item>
+      <tabbar-item link="/summary">
         <img slot="icon" src="./assets/icon-summary.png">
         <img slot="icon-active" src="./assets/icon-summary-active.png">
         <span slot="label">汇总</span>
