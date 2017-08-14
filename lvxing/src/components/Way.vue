@@ -1,31 +1,31 @@
 <template>
   <section class="page-way">
     <ul class="list">
-      <li class="item" @click="handleItem('airplane')">
+      <li class="item" @click="handleItem('Airplane')">
         <div class="inner">
           <i class="icon iconfont icon-feiji"></i>
           <span>在飞机上</span>
         </div>
       </li>
-      <li class="item">
+      <li class="item" @click="handleItem('Train')">
         <div class="inner">
           <i class="icon iconfont icon-huoche"></i>
           <span>在火车上</span>
         </div>
       </li>
-      <li class="item">
+      <li class="item" @click="handleItem('Ship')">
         <div class="inner">
           <i class="icon iconfont icon-lunchuan"></i>
           <span>在轮船上</span>
         </div>
       </li>
-      <li class="item">
+      <li class="item" @click="handleItem('Bus')">
         <div class="inner">
           <i class="icon iconfont icon-gongjiaoche"></i>
           <span>在大巴上</span>
         </div>
       </li>
-      <li class="item">
+      <li class="item" @click="handleItem('Foot')">
         <div class="inner">
           <i class="icon iconfont icon-shizhong"></i>
           <span>在徒步中</span>
@@ -42,18 +42,37 @@
       <x-dialog v-model="dialog" class="dialog">
         <div class="hd">填写信息</div>
         <div class="bd">
-          <template v-if="curWay === 'airplane'">
-            <group title="航班号">
-              <x-input title="航班号"></x-input>
+          <template v-if="curWay === 'Airplane'">
+            <group>
+              <x-input v-model="flight" title="航班" placeholder="测试提示：CZ3544"></x-input>
             </group>
+          </template>
+          <template v-if="curWay === 'Train'">
+            <group>
+              <x-input v-model="flight" title="车次" placeholder="测试提示：CZ3544"></x-input>
+            </group>
+          </template>
+          <template v-if="curWay === 'Ship'">
+            <group>
+              <x-input v-model="flight" title="航次" placeholder="测试提示：CZ3544"></x-input>
+            </group>
+          </template>
+          <template v-if="curWay === 'Bus'">
+            <group>
+              <x-input v-model="flight" title="巴士型号" placeholder="测试提示：CZ3544"></x-input>
+            </group>
+          </template>
+          <template v-if="curWay === 'Foot'">
+            地图定位
           </template>
         </div>
         <div class="ft">
-          <span @click="dialog = false">关 闭</span>
-          <span>确 认</span>
+          <span class="close" @click="dialog = false">关 闭</span>
+          <span class="confirm" @click="confirm">确 认</span>
         </div>
       </x-dialog>
     </div>
+    <router-view></router-view>  
   </section>
 </template>
 
@@ -73,24 +92,39 @@
       return {
         dialog: false,
         curWay: '',
-        test: 1
+        flight: ''
       }
     },
     methods: {
       handleItem (way) {
         this.curWay = way
         this.dialog = true
+      },
+      confirm () {
+        if (this.flight === 'CZ3544') {
+          this.$router.push({
+            name: this.curWay
+          })
+        } else {
+          this.flight = ''
+          this.$vux.toast.show({
+            type: 'text',
+            text: '查无该航班',
+            position: 'middle'
+          })
+        }
       }
     }
   }
 </script>
 
-<style lang="less" scoped>
-@import '~vux/src/styles/close';
+<style lang="less">
   .dialog {
     .weui-dialog{
-      border-radius: 8px;
-      padding-bottom: 8px;
+      border-radius: 4px;
+    }
+    .weui-cells {
+      margin-top: 0;
     }
     .hd {
       line-height: 40px;
@@ -110,6 +144,12 @@
     .ft span:first-child {
       border-right: 1px solid #D9D9D9
     }
+    .close:active, .confirm:active {
+      background-color: rgba(0,0,0,0.1)
+    }
+  }
+  .weui-toast {
+    z-index: 5001
   }
 </style>
 
