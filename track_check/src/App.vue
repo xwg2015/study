@@ -1,0 +1,194 @@
+<template>
+  <div id="app" style="height: 100%;">
+    <x-header class="header" :left-options="{showBack: false}" v-if="isLogin">{{title}}<a slot="right" href="javascript:;" @click="dialog = true">切换</a></x-header>
+    <div class="main">
+      <group>
+        <cell title="当前位置" :value="position"></cell>
+        <cell title="检查周期" value="30天"></cell>
+      </group> 
+      <router-view></router-view>
+    </div>
+    <tabbar v-model="index" v-if="isLogin" class="tabbar">
+      <tabbar-item>
+        <img slot="icon" src="./assets/icon-check.png">
+        <img slot="icon-active" src="./assets/icon-check-active.png">
+        <span slot="label">检查</span>
+      </tabbar-item>
+      <tabbar-item>
+        <img slot="icon" src="./assets/icon-summary.png">
+        <img slot="icon-active" src="./assets/icon-summary-active.png">
+        <span slot="label">汇总</span>
+      </tabbar-item>
+    </tabbar>
+    <div v-transfer-dom>
+      <x-dialog v-model="dialog" class="dialog" hide-on-blur>
+        <div class="bd">
+          <picker :data="trackList" :columns=2 v-model="trackChoose"></picker>
+        </div>
+        <div class="ft">
+          <grid :rows="2">
+            <grid-item>
+              <span class="close" @click="dialog = false">关闭</span>
+            </grid-item>
+            <grid-item>
+              <span class="confirm" @click="handleConfirm">确认</span>
+            </grid-item>
+          </grid>
+        </div>
+      </x-dialog>
+    </div>
+  </div>
+</template>
+
+<script>
+import { XHeader, Tabbar, TabbarItem, XDialog, TransferDomDirective as TransferDom, Picker, Grid, GridItem, Group, Cell } from 'vux'
+export default {
+  name: 'app',
+  directives: {
+    TransferDom
+  },
+  components: {
+    XHeader,
+    Tabbar,
+    TabbarItem,
+    XDialog,
+    Picker,
+    Grid,
+    GridItem,
+    Group,
+    Cell
+  },
+  data () {
+    return {
+      index: 0,
+      title: '',
+      isLogin: true,
+      dialog: false,
+      trackChoose: ['鹰潭北线路车间', '区间线路结构检查'],
+      trackList: [
+        {
+          name: '萍乡东线路车间',
+          value: '萍乡东线路车间',
+          parent: 0
+        },
+        {
+          name: '萍乡西线路车间',
+          value: '萍乡西线路车间',
+          parent: 0
+        },
+        {
+          name: '萍乡南线路车间',
+          value: '萍乡南线路车间',
+          parent: 0
+        },
+        {
+          name: '萍乡北线路车间',
+          value: '萍乡北线路车间',
+          parent: 0
+        },
+        {
+          name: '区间线路结构检查',
+          value: '区间线路结构检查',
+          parent: '萍乡东线路车间'
+        },
+        {
+          name: '区间线路仪检',
+          value: '区间线路仪检',
+          parent: '萍乡东线路车间'
+        },
+        {
+          name: '区间岔道仪检',
+          value: '区间岔道仪检',
+          parent: '萍乡东线路车间'
+        },
+        {
+          name: '站内胶X绝缘接口电气化性能检查',
+          value: '站内胶X绝缘接口电气化性能检查',
+          parent: '萍乡东线路车间'
+        },
+        {
+          name: '南线路检查',
+          value: '南线路检查',
+          parent: '萍乡南线路车间'
+        },
+        {
+          name: '西线路检查',
+          value: '西线路检查',
+          parent: '萍乡西线路车间'
+        },
+        {
+          name: '北线路检查',
+          value: '北线路检查',
+          parent: '萍乡北线路车间'
+        }
+      ]
+    }
+  },
+  mounted () {
+    this.title = this.trackChoose[0]
+  },
+  computed: {
+    position () {
+      return this.trackChoose[1]
+    }
+  },
+  methods: {
+    handleConfirm () {
+      console.log(this.trackChoose)
+      this.title = `${this.trackChoose[0]}`
+      this.dialog = false
+    }
+  }
+}
+</script>
+
+<style lang="less">
+@import '~vux/src/styles/reset.less';
+@import './style/all.less';
+
+@theme-color: #09BB07;
+@font-color: #999;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  color: @font-color;
+}
+
+.main {
+  position: absolute;
+  top: 46px;
+  bottom: 53px;
+  width: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dialog {
+  .weui-dialog {
+    min-width: 300px;
+    max-width: 80%;
+  }
+  .weui-grid {
+    padding: 10px
+  }
+  .close, .confirm {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .close {
+    color: @font-color
+  }
+  .confirm {
+    color: @theme-color
+  }
+}
+
+.tabbar {
+  .weui-tabbar__label {
+    font-size: 14px;
+  }
+}
+</style>
