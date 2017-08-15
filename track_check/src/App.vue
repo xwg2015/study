@@ -1,11 +1,7 @@
 <template>
   <div id="app" style="height: 100%;">
     <x-header class="header" :left-options="{showBack: false}" v-if="isLogin">{{title}}<a slot="right" href="javascript:;" @click="dialog = true">切换</a></x-header>
-    <div class="main">
-      <group>
-        <cell title="当前位置" :value="position"></cell>
-        <cell title="检查周期" value="30天"></cell>
-      </group> 
+    <div class="main" :class="{ 'login-main': isLogin }">
       <router-view></router-view>
     </div>
     <tabbar v-model="index" v-if="isLogin" class="tabbar">
@@ -41,7 +37,9 @@
 </template>
 
 <script>
-import { XHeader, Tabbar, TabbarItem, XDialog, TransferDomDirective as TransferDom, Picker, Grid, GridItem, Group, Cell } from 'vux'
+import { XHeader, Tabbar, TabbarItem, XDialog, TransferDomDirective as TransferDom, Picker, Grid, GridItem } from 'vux'
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'app',
   directives: {
@@ -54,15 +52,12 @@ export default {
     XDialog,
     Picker,
     Grid,
-    GridItem,
-    Group,
-    Cell
+    GridItem
   },
   data () {
     return {
       index: 0,
       title: '',
-      isLogin: true,
       dialog: false,
       trackChoose: ['鹰潭北线路车间', '区间线路结构检查'],
       trackList: [
@@ -128,11 +123,16 @@ export default {
     this.title = this.trackChoose[0]
   },
   computed: {
+    ...mapState({
+      isLogin: state => state.isLogin
+    }),
     position () {
       return this.trackChoose[1]
     }
   },
   methods: {
+    ...mapActions({
+    }),
     handleConfirm () {
       console.log(this.trackChoose)
       this.title = `${this.trackChoose[0]}`
@@ -157,6 +157,10 @@ html, body {
 }
 
 .main {
+  height: 100%;
+}
+
+.login-main {
   position: absolute;
   top: 46px;
   bottom: 53px;

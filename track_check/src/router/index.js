@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+Vue.use(Router)
+
 import Check from '@/components/Check'
 import Summary from '@/components/Summary'
-
-import { DatetimePlugin } from 'vux'
-Vue.use(DatetimePlugin)
-
-Vue.use(Router)
+import Index from '@/components/Index'
 
 export default new Router({
   routes: [
+    {
+      path: '/index',
+      name: 'index',
+      component: Index
+    },
     {
       path: '/check',
       name: 'check',

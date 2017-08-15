@@ -1,5 +1,9 @@
 <template>
   <section class="page-check">
+    <group>
+      <cell title="当前位置" :value="position"></cell>
+      <cell title="检查周期" value="30天"></cell>
+    </group> 
     <div class="table-wrap">
       <x-table full-bordered class="table-item" v-for="(item, index) in dataList" :key="index">
         <tr>
@@ -41,13 +45,16 @@
 </template>
 
 <script>
-import { XTable, XButton } from 'vux'
+import { XTable, XButton, Group, Cell } from 'vux'
+import { mapState } from 'vuex'
 
 export default {
   name: 'check',
   components: {
     XTable,
-    XButton
+    XButton,
+    Group,
+    Cell
   },
   data () {
     return {
@@ -90,6 +97,11 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState({
+      isLogin: state => state.isLogin
+    })
   },
   methods: {
     showPlugin () {
