@@ -8,14 +8,22 @@ import router from '../router'
 
 export const Login = ({commit, state}, object) => {
   let data = {
-    name: '1'
+    admin: {
+      email: object.username,
+      password: object.password
+    },
+    verify_code: Number(object.code)
   }
   commit('STATE_LOGINLOADING', true)
-  http.post('/user', data).then(res => {
-    if (res.data.code === 200) {
-      commit('STATE_ISLOGIN', true)
-      commit('STATE_LOGINLOADING', false)
-    }
+  http.post('http://192.168.1.3/admin.php/Public/login', data).then(res => {
+    console.log('res:' + JSON.stringify(res))
+    console.log('status:' + res.status)
+    // if (res.status) {
+    //   commit('STATE_ISLOGIN', true)
+    //   commit('STATE_LOGINLOADING', false)
+    //   router.push({ path: '/check' })
+    // }
+    router.push({ path: '/check' })
   }).catch(() => {
     Vue.$vux.toast.show({
       type: 'cancel',
@@ -24,6 +32,5 @@ export const Login = ({commit, state}, object) => {
     })
     commit('STATE_ISLOGIN', true)
     commit('STATE_LOGINLOADING', false)
-    router.push({ path: '/check' })
   })
 }

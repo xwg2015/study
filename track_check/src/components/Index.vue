@@ -11,6 +11,9 @@
       <group class="group">
         <x-input title="账号" v-model="username" placeholder="请使用内部指定账号"></x-input>
         <x-input type="password" title="密码" v-model="password"></x-input>
+        <x-input title="验证码" v-model="code" class="weui-cell_vcode">
+          <img slot="right" class="weui-vcode-img" src="http://192.168.1.3/admin.php/Public/verifyCode" onclick="this.src+='?rand='+Math.random();">
+        </x-input>
       </group>
       <x-button type="primary" :show-loading="loginLoading" @click.native="handleLogin">登录</x-button>
     </div>
@@ -30,7 +33,8 @@
     data () {
       return {
         username: '',
-        password: ''
+        password: '',
+        code: ''
       }
     },
     mounted () {
@@ -52,7 +56,12 @@
         'Login'
       ]),
       handleLogin () {
-        this.Login()
+        let data = {
+          username: this.username,
+          password: this.password,
+          code: this.code
+        }
+        this.Login(data)
       }
     }
   }
@@ -70,7 +79,7 @@
       right: 0;
       width: 100%;
       height: 100%;
-      // background-image: url('../assets/bg.jpg');
+      background-image: url('../assets/bg.jpg');
       background-size: cover;
       background-position: center;
       filter: blur(2px);
