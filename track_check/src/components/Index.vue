@@ -79,7 +79,7 @@
       right: 0;
       width: 100%;
       height: 100%;
-      background-image: url('../assets/bg.jpg');
+      // background-image: url('../assets/bg.jpg');
       background-size: cover;
       background-position: center;
       filter: blur(2px);

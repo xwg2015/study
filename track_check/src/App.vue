@@ -1,7 +1,7 @@
 <template>
   <div id="app" style="height: 100%;">
     <x-header class="header" :left-options="{showBack: false}" v-if="isLogin">{{title}}<a slot="right" href="javascript:;" @click="dialog = true">切换</a></x-header>
-    <div class="main" :class="{ 'login-main': isLogin }">
+    <div :class="isLogin ? 'login-main' : 'unlogin-main'">
       <router-view></router-view>
     </div>
     <tabbar v-model="index" v-if="isLogin" class="tabbar">
@@ -121,18 +121,17 @@ export default {
   },
   mounted () {
     this.title = this.trackChoose[0]
+    this.ChangeLocation(this.trackChoose[1])
   },
   computed: {
     ...mapState({
       isLogin: state => state.isLogin
-    }),
-    position () {
-      return this.trackChoose[1]
-    }
+    })
   },
   methods: {
-    ...mapActions({
-    }),
+    ...mapActions([
+      'ChangeLocation'
+    ]),
     handleConfirm () {
       console.log(this.trackChoose)
       this.title = `${this.trackChoose[0]}`
@@ -156,7 +155,7 @@ html, body {
   color: @font-color;
 }
 
-.main {
+.unlogin-main {
   height: 100%;
 }
 

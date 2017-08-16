@@ -32,5 +32,10 @@ export const Login = ({commit, state}, object) => {
     })
     commit('STATE_ISLOGIN', true)
     commit('STATE_LOGINLOADING', false)
+    router.push({ path: '/check' })
   })
+}
+
+export const ChangeLocation = ({commit}, String) => {
+  commit('STATE_LOCATION', String)
 }

@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-import { DatetimePlugin, ToastPlugin } from 'vux'
+import { DatetimePlugin, ToastPlugin, ConfirmPlugin } from 'vux'
 Vue.use(DatetimePlugin)
 Vue.use(ToastPlugin)
+Vue.use(ConfirmPlugin)
 
 Vue.config.productionTip = false
 

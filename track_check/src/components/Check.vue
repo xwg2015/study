@@ -1,7 +1,7 @@
 <template>
   <section class="page-check">
     <group>
-      <cell title="当前位置" :value="position"></cell>
+      <cell title="当前位置" :value="location"></cell>
       <cell title="检查周期" value="30天"></cell>
     </group> 
     <div class="table-wrap">
@@ -25,7 +25,7 @@
           <td colspan="3">
             <span v-if="item.key5">{{item.key5}}</span>
             <span v-else>
-              <x-button mini plain type="primary" @click.native="showPlugin">打卡</x-button>
+              <x-button mini plain type="primary" @click.native="handleCheck">打卡</x-button>
             </span>
           </td>
         </tr>
@@ -36,28 +36,57 @@
         <tr>
           <td colspan="3">{{item.key6}}</td>
           <td colspan="3">
-            <span v-for="(subItem, subIndex) in item.key7" :key="subIndex">{{subItem}}<span v-if="subIndex !== item.key7.length - 1">，</span></span>
+            <span v-if="item.key7">{{item.key7[0]}}</span>
+            <span v-if="item.key7.length > 1"><a href="javascript:;" class="more" @click="handleMore(index, dataList)">查看更多</a></span>
           </td>
         </tr>
       </x-table>
+      <div v-transfer-dom>
+        <x-dialog v-model="dialogMore" class="dialog" hide-on-blur>
+          <div class="bd">
+            <timeline>
+              <timeline-item v-for="(i, index) in historyCheck" :key="index">
+                <h4 :class="[i === 0 ? 'recent' : '']">xxx 于 {{i}} 已检查</h4>
+              </timeline-item>
+            </timeline>
+          </div>
+          <div class="ft">
+            <grid :rows="1">
+              <grid-item>
+                <span class="close" @click="dialogMore = false">关闭</span>
+              </grid-item>
+            </grid>
+          </div>
+        </x-dialog>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { XTable, XButton, Group, Cell } from 'vux'
+import { XTable, XButton, Group, Cell, XDialog, TransferDomDirective as TransferDom, Timeline, TimelineItem, Grid, GridItem } from 'vux'
 import { mapState } from 'vuex'
 
 export default {
   name: 'check',
+  directives: {
+    TransferDom
+  },
   components: {
     XTable,
     XButton,
     Group,
-    Cell
+    Cell,
+    XDialog,
+    Timeline,
+    TimelineItem,
+    Grid,
+    GridItem
   },
   data () {
     return {
+      dialogMore: false,
+      historyCheck: [],
       dataList: [
         {
           key1: 1,
@@ -66,7 +95,7 @@ export default {
           key4: '2017-08-30',
           key5: '',
           key6: '剩余16天',
-          key7: ['2017-07-01', '2017-07-31']
+          key7: ['2017-07-01', '2017-07-31', '2017-06-20', '2017-06-01']
         },
         {
           key1: 2,
@@ -100,26 +129,29 @@ export default {
   },
   computed: {
     ...mapState({
-      isLogin: state => state.isLogin
+      isLogin: state => state.isLogin,
+      location: state => state.location
     })
   },
+  mounted () {
+  },
   methods: {
-    showPlugin () {
-      this.$vux.datetime.show({
-        cancelText: '取消',
-        confirmText: '确定',
-        format: 'YYYY-MM-DD',
-        value: '2017-08-14',
-        onConfirm (val) {
-          console.log('plugin confirm', val)
+    handleCheck () {
+      console.log(1)
+      const _this = this
+      this.$vux.confirm.show({
+        content: '今天是2017-08-28，距离下一次检查还剩5天，确定打卡？',
+        onCancel () {
+          _this.$vux.confirm.hide()
         },
-        onShow () {
-          console.log('plugin show')
-        },
-        onHide () {
-          console.log('plugin hide')
+        onConfirm () {
+          console.log(1)
         }
       })
+    },
+    handleMore (index, list) {
+      this.dialogMore = true
+      this.historyCheck = list[index].key7
     }
   }
 }
@@ -145,6 +177,14 @@ export default {
       .weui-btn_mini {
         padding: 0 1em;
         line-height: 1.8;
+      }
+
+     .vux-table th {
+        z-index: -1;
+      }
+
+      .more {
+        color: #999;
       }
 
       th {
