@@ -3,6 +3,7 @@
     <group>
       <cell title="当前位置" :value="location"></cell>
       <cell title="检查周期" value="30天"></cell>
+      <selector title="排序方式" :options="orderList" v-model="order"></selector>
     </group> 
     <div class="table-wrap">
       <x-table full-bordered class="table-item" v-for="(item, index) in dataList" :key="index">
@@ -64,7 +65,7 @@
 </template>
 
 <script>
-import { XTable, XButton, Group, Cell, XDialog, TransferDomDirective as TransferDom, Timeline, TimelineItem, Grid, GridItem } from 'vux'
+import { XTable, XButton, Group, Cell, XDialog, TransferDomDirective as TransferDom, Timeline, TimelineItem, Grid, GridItem, Selector } from 'vux'
 import { mapState } from 'vuex'
 
 export default {
@@ -81,12 +82,25 @@ export default {
     Timeline,
     TimelineItem,
     Grid,
-    GridItem
+    GridItem,
+    Selector
   },
   data () {
     return {
       dialogMore: false,
+      filter: false,
       historyCheck: [],
+      order: '1',
+      orderList: [
+        {
+          key: '1',
+          value: '默认排序'
+        },
+        {
+          key: '2',
+          value: '时间排序'
+        }
+      ],
       dataList: [
         {
           key1: 1,
@@ -159,9 +173,9 @@ export default {
 
 <style lang="less">
   .page-check {
-    margin-top: 20px;
-    margin-bottom: 40px;
-
+    background-color: #fff;
+    z-index: 10;
+    
     .table-wrap {
       padding: 0 10px;
 
@@ -197,6 +211,11 @@ export default {
         height: 40px;
         color: #434341;
       }
+    }
+
+    .weui-select {
+      color: #999;
+      direction: rtl;
     }
   }
 </style>

@@ -1,9 +1,11 @@
 <template>
   <div id="app" style="height: 100%;">
-    <x-header class="header" :left-options="{showBack: false}" v-if="isLogin">{{title}}<a slot="right" href="javascript:;" @click="dialog = true">切换</a></x-header>
-    <div :class="isLogin ? 'login-main' : 'unlogin-main'">
-      <router-view></router-view>
-    </div>
+    <x-header class="header" :left-options="{showBack: false}" v-if="isLogin">
+      {{title}}
+      <a slot="right" href="javascript:;" @click="dialog = true">切换</a></x-header>
+    <transition :name="className">
+      <router-view :class="isLogin ? 'login-main' : 'unlogin-main'"></router-view>
+    </transition>
     <tabbar v-model="index" v-if="isLogin" class="tabbar">
       <tabbar-item link="/check">
         <img slot="icon" src="./assets/icon-check.png">
@@ -59,6 +61,7 @@ export default {
       index: 0,
       title: '',
       dialog: false,
+      className: 'left-silde',
       trackChoose: ['鹰潭北线路车间', '区间线路结构检查'],
       trackList: [
         {
@@ -119,6 +122,15 @@ export default {
       ]
     }
   },
+  watch: {
+    $route (to, from) {
+      if (to.meta.index > from.meta.index) {
+        this.className = 'left-silde'
+      } else {
+        this.className = 'right-silde'
+      }
+    }
+  },
   mounted () {
     this.title = this.trackChoose[0]
     this.ChangeLocation(this.trackChoose[1])
@@ -153,6 +165,7 @@ html, body {
   width: 100%;
   font-size: 14px;
   color: @font-color;
+  -webkit-tap-highlight-color: rgba(0,0,0);
 }
 
 .unlogin-main {
@@ -161,6 +174,8 @@ html, body {
 
 .login-main {
   position: absolute;
+  left: 0;
+  right: 0;
   top: 46px;
   bottom: 53px;
   width: 100%;
@@ -193,5 +208,25 @@ html, body {
   .weui-tabbar__label {
     font-size: 14px;
   }
+}
+
+.left-silde-enter {
+  transform: translateX(100%)
+}
+.left-silde-enter-active, .left-silde-leave-active {
+  transition: 0.5s;
+}
+.left-silde-leave-to {
+  transform: translateX(-100%)
+}
+
+.right-silde-enter {
+  transform: translateX(-100%)
+}
+.right-silde-enter-active, .right-silde-leave-active {
+  transition: 0.5s;
+}
+.right-silde-leave-to {
+  transform: translateX(100%)
 }
 </style>

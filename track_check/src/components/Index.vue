@@ -9,13 +9,13 @@
     </div>
     <div class="form">
       <group class="group">
-        <x-input title="账号" v-model="username" placeholder="请使用内部指定账号"></x-input>
-        <x-input type="password" title="密码" v-model="password"></x-input>
-        <x-input title="验证码" v-model="code" class="weui-cell_vcode">
+        <x-input title="账号" v-model="username" placeholder="请使用内部指定账号" ref="username" required></x-input>
+        <x-input type="password" title="密码" v-model="password" ref="password" required></x-input>
+        <x-input title="验证码" v-model="code" class="weui-cell_vcode" ref="code" required>
           <img slot="right" class="weui-vcode-img" src="http://192.168.1.3/admin.php/Public/verifyCode" onclick="this.src+='?rand='+Math.random();">
         </x-input>
       </group>
-      <x-button type="primary" :show-loading="loginLoading" @click.native="handleLogin">登录</x-button>
+      <x-button type="primary" :show-loading="loginLoading" @click.native="handleLogin" :disabled="valid">登录</x-button>
     </div>
   </section>
 </template>
@@ -38,17 +38,18 @@
       }
     },
     mounted () {
-      console.log(this)
     },
     computed: {
       ...mapState({
         isLogin: state => state.isLogin,
         loginLoading: state => state.loginLoading
-      })
-    },
-    watch: {
-      isLogin (a) {
-        console.log(a)
+      }),
+      valid () {
+        if (!this.username || !this.password || !this.code) {
+          return true
+        } else {
+          return false
+        }
       }
     },
     methods: {
@@ -79,7 +80,7 @@
       right: 0;
       width: 100%;
       height: 100%;
-      // background-image: url('../assets/bg.jpg');
+      background-image: url('../assets/bg.jpg');
       background-size: cover;
       background-position: center;
       filter: blur(2px);
