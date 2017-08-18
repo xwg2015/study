@@ -5,7 +5,7 @@
       <div class="img-wrap">
         <img src="../assets/logo.jpg">
       </div>
-      <h1>南昌铁路局南昌西工务段线路<br/>设备周期性检查预警</h1>
+      <h1><br/></h1>
     </div>
     <div class="form">
       <group class="group">
