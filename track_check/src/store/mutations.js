@@ -11,10 +11,18 @@ export const STATE_LOCATION = (state, location) => {
 }
 
 export const STATE_DIALOGSWITCH = (state, dialogSwitch) => {
-  state.dialogSwitch = dialogSwitch
+  state.dialog.switch = dialogSwitch
 }
 
 export const STATE_CURINDEX = (state, curIndex) => {
   state.curIndex = curIndex
+}
+
+export const STATE_TITLE = (state, title) => {
+  state.title = title
+}
+
+export const STATE_PATHNAME = (state, pathName) => {
+  state.pathName = pathName
 }
 

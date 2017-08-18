@@ -14,7 +14,13 @@ let state = {
   // 当前位置
   location: '',
   // 切换弹框
-  dialogSwitch: false,
+  dialog: {
+    switch: false
+  },
+  // 标题
+  title: '',
+  // 路由
+  pathName: '',
   // 当前下标
   curIndex: 0
 }

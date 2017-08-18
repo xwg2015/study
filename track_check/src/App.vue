@@ -1,8 +1,6 @@
 <template>
   <div id="app" style="height: 100%;">
-    <x-header class="header" :left-options="{showBack: false}" v-if="isLogin">
-      {{title}}
-      <a slot="right" href="javascript:;" @click="dialog = true">切换</a></x-header>
+    <VHeader></VHeader>
     <transition :name="className">
       <router-view :class="isLogin ? 'login-main' : 'unlogin-main'"></router-view>
     </transition>
@@ -18,108 +16,25 @@
         <span slot="label">汇总</span>
       </tabbar-item>
     </tabbar>
-    <div v-transfer-dom>
-      <x-dialog v-model="dialog" class="dialog" hide-on-blur>
-        <div class="bd">
-          <picker :data="trackList" :columns=2 v-model="trackChoose"></picker>
-        </div>
-        <div class="ft">
-          <grid :rows="2">
-            <grid-item>
-              <span class="close" @click="dialog = false">关闭</span>
-            </grid-item>
-            <grid-item>
-              <span class="confirm" @click="handleConfirm">确认</span>
-            </grid-item>
-          </grid>
-        </div>
-      </x-dialog>
-    </div>
   </div>
 </template>
 
 <script>
-import { XHeader, Tabbar, TabbarItem, XDialog, TransferDomDirective as TransferDom, Picker, Grid, GridItem } from 'vux'
+import { Tabbar, TabbarItem } from 'vux'
 import { mapState, mapActions } from 'vuex'
+import VHeader from './components/public/VHeader'
 
 export default {
   name: 'app',
-  directives: {
-    TransferDom
-  },
   components: {
-    XHeader,
     Tabbar,
     TabbarItem,
-    XDialog,
-    Picker,
-    Grid,
-    GridItem
+    VHeader
   },
   data () {
     return {
       index: 0,
-      title: '',
-      dialog: false,
-      className: 'left-silde',
-      trackChoose: ['鹰潭北线路车间', '区间线路结构检查'],
-      trackList: [
-        {
-          name: '萍乡东线路车间',
-          value: '萍乡东线路车间',
-          parent: 0
-        },
-        {
-          name: '萍乡西线路车间',
-          value: '萍乡西线路车间',
-          parent: 0
-        },
-        {
-          name: '萍乡南线路车间',
-          value: '萍乡南线路车间',
-          parent: 0
-        },
-        {
-          name: '萍乡北线路车间',
-          value: '萍乡北线路车间',
-          parent: 0
-        },
-        {
-          name: '区间线路结构检查',
-          value: '区间线路结构检查',
-          parent: '萍乡东线路车间'
-        },
-        {
-          name: '区间线路仪检',
-          value: '区间线路仪检',
-          parent: '萍乡东线路车间'
-        },
-        {
-          name: '区间岔道仪检',
-          value: '区间岔道仪检',
-          parent: '萍乡东线路车间'
-        },
-        {
-          name: '站内胶X绝缘接口电气化性能检查',
-          value: '站内胶X绝缘接口电气化性能检查',
-          parent: '萍乡东线路车间'
-        },
-        {
-          name: '南线路检查',
-          value: '南线路检查',
-          parent: '萍乡南线路车间'
-        },
-        {
-          name: '西线路检查',
-          value: '西线路检查',
-          parent: '萍乡西线路车间'
-        },
-        {
-          name: '北线路检查',
-          value: '北线路检查',
-          parent: '萍乡北线路车间'
-        }
-      ]
+      className: 'left-silde'
     }
   },
   watch: {
@@ -132,8 +47,8 @@ export default {
     }
   },
   mounted () {
-    this.title = this.trackChoose[0]
-    this.ChangeLocation(this.trackChoose[1])
+    // this.ChangeLocation(this.trackChoose[1])
+    // this.scrollFix(document.querySelector('.login-main'))
   },
   computed: {
     ...mapState({
@@ -145,9 +60,23 @@ export default {
       'ChangeLocation'
     ]),
     handleConfirm () {
-      console.log(this.trackChoose)
       this.title = `${this.trackChoose[0]}`
       this.dialog = false
+    },
+    scrollFix (elem) {
+      var startTopScroll
+      if (!elem) {
+        return
+      }
+      elem.addEventListener('touchstart', function (event) {
+        startTopScroll = elem.scrollTop
+        if (startTopScroll <= 0) {
+          elem.scrollTop = 1
+        }
+        if (startTopScroll + elem.offsetHeight >= elem.scrollHeight) {
+          elem.scrollTop = elem.scrollHeight - elem.offsetHeight - 1
+        }
+      }, false)
     }
   }
 }
@@ -165,7 +94,7 @@ html, body {
   width: 100%;
   font-size: 14px;
   color: @font-color;
-  -webkit-tap-highlight-color: rgba(0,0,0);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .unlogin-main {

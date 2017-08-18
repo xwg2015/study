@@ -8,42 +8,41 @@
     <div class="table-wrap">
       <x-table full-bordered class="table-item" v-for="(item, index) in dataList" :key="index">
         <tr>
-          <th colspan="2">序号</th>
-          <th colspan="2">班组</th>
-          <th colspan="2">检查区段</th>
+          <th colspan="2" width="20%">序号</th>
+          <th colspan="4" width="40%">班组</th>
+          <th colspan="4" width="40%">检查区段</th>
         </tr>
         <tr>
           <td colspan="2">{{item.key1}}</td>
-          <td colspan="2">{{item.key2}}</td>
-          <td colspan="2">{{item.key3}}</td>
+          <td colspan="4">{{item.key2}}</td>
+          <td colspan="4">{{item.key3}}</td>
         </tr>
         <tr>
-          <th colspan="3" width="50%">最晚检查时间</th>
-          <th colspan="3" width="50%">实际检查时间</th>
+          <th colspan="4" width="40%">最晚检查时间</th>
+          <th colspan="4" width="40%">上一次检查时间</th>
+          <th colspan="2" width="20%">今日检查</th>
         </tr>
         <tr>
-          <td colspan="3">{{item.key4}}</td>
-          <td colspan="3">
-            <span v-if="item.key5">{{item.key5}}</span>
-            <span v-else>
-              <x-button mini plain type="primary" @click.native="handleCheck">打卡</x-button>
-            </span>
+          <td colspan="4">{{item.key4}}</td>
+          <td colspan="4">{{item.key7[0]}}</td>
+          <td colspan="2">
+            <x-button mini plain type="primary" @click.native="handleCheck">打卡</x-button>
           </td>
         </tr>
         <tr>
-          <th colspan="3">备注</th>
-          <th colspan="3">历史检查时间</th>
+          <th colspan="5">备注</th>
+          <th colspan="5">历史检查时间</th>
         </tr>
         <tr>
-          <td colspan="3">{{item.key6}}</td>
-          <td colspan="3">
-            <span v-if="item.key7">{{item.key7[0]}}</span>
-            <span v-if="item.key7.length > 1"><a href="javascript:;" class="more" @click="handleMore(index, dataList)">查看更多</a></span>
+          <td colspan="5">{{item.key6}}</td>
+          <td colspan="5">
+            <x-button mini @click.native="handleMore(index, dataList)">查看</x-button>
           </td>
         </tr>
       </x-table>
+      <divider>我是有底线的</divider>
       <div v-transfer-dom>
-        <x-dialog v-model="dialogMore" class="dialog" hide-on-blur>
+        <x-dialog v-model="dialogMore" class="dialog" :scroll="false" hide-on-blur>
           <div class="bd">
             <timeline>
               <timeline-item v-for="(i, index) in historyCheck" :key="index">
@@ -65,7 +64,7 @@
 </template>
 
 <script>
-import { XTable, XButton, Group, Cell, XDialog, TransferDomDirective as TransferDom, Timeline, TimelineItem, Grid, GridItem, Selector } from 'vux'
+import { XTable, XButton, Group, Cell, XDialog, TransferDomDirective as TransferDom, Timeline, TimelineItem, Grid, GridItem, Selector, Divider } from 'vux'
 import { mapState } from 'vuex'
 
 export default {
@@ -83,7 +82,8 @@ export default {
     TimelineItem,
     Grid,
     GridItem,
-    Selector
+    Selector,
+    Divider
   },
   data () {
     return {
@@ -151,7 +151,6 @@ export default {
   },
   methods: {
     handleCheck () {
-      console.log(1)
       const _this = this
       this.$vux.confirm.show({
         content: '今天是2017-08-28，距离下一次检查还剩5天，确定打卡？',
@@ -180,7 +179,7 @@ export default {
       padding: 0 10px;
 
       .table-item {
-        margin: 20px 0;
+        margin-top: 20px;
         box-shadow: 2px 2px solid rgba(0,0,0,0.5)
       }
 
@@ -189,8 +188,8 @@ export default {
       }
 
       .weui-btn_mini {
-        padding: 0 1em;
-        line-height: 1.8;
+        padding: 0 0.8em;
+        line-height: 1.6;
       }
 
      .vux-table th {
@@ -202,13 +201,13 @@ export default {
       }
 
       th {
-        height: 30px;
+        height: 25px;
         background-color: #f5f4f3;
         color: #a9a9b2;
       }
 
       td {
-        height: 40px;
+        height: 30px;
         color: #434341;
       }
     }
@@ -217,5 +216,14 @@ export default {
       color: #999;
       direction: rtl;
     }
+
+    .vux-divider {
+      margin: 10px 0;
+      color: #999;
+    }
+  }
+
+  .weui-mask {
+    width: 100%;
   }
 </style>

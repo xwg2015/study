@@ -39,3 +39,15 @@ export const Login = ({commit, state}, object) => {
 export const ChangeLocation = ({commit}, String) => {
   commit('STATE_LOCATION', String)
 }
+
+export const ChangeDialogSwitch = ({commit}, Boolean) => {
+  commit('STATE_DIALOGSWITCH', Boolean)
+}
+
+export const ChangeTitle = ({commit}, String) => {
+  commit('STATE_TITLE', String)
+}
+
+export const ChangePathName = ({commit}, String) => {
+  commit('STATE_PATHNAME', String)
+}
