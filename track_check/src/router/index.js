@@ -8,7 +8,6 @@ import Index from '@/components/Index'
 import NoFound from '@/components/404'
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',

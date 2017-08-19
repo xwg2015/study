@@ -28,7 +28,7 @@ let state = {
   // 已选的检查项目
   trackChoose: [],
   // 检查项目详情
-  checkInfo: []
+  checkInfo: {}
 }
 
 export default new Vuex.Store({

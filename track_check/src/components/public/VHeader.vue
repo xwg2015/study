@@ -77,7 +77,6 @@
     },
     watch: {
       $route (to, from) {
-        this.changeTitle(to.name)
         this.ChangePathName(to.name)
       }
     },
@@ -105,9 +104,31 @@
           table: this.trackChoose[1],
           order: this.order
         }
-        console.log(this.trackChoose)
         this.GetCheckList(data)
       }
     }
   }
 </script>
+
+<style lang="less">
+  .dialog {
+    .weui-dialog {
+      min-width: 300px;
+      max-width: 80%;
+    }
+    .weui-grid {
+      padding: 10px
+    }
+    .close, .confirm {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .close {
+      color: #999
+    }
+    .confirm {
+      color: #09BB07
+    }
+  }
+</style>

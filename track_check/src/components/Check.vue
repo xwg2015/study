@@ -6,7 +6,7 @@
       <selector title="排序方式" :options="orderList" v-model="order" @on-change="changeOrder"></selector>
     </group> 
     <div class="table-wrap">
-      <VCard :data="checkInfo.list" :check-fn="handleCheck"></VCard>
+      <VCard :data="checkInfo.list" :type="checkInfo.type" tab="check" :check-fn="handleCheck"></VCard>
       <divider v-if="checkInfo.list.length">我是有底线的</divider>
       <divider v-else>暂无可检查的项目</divider>
     </div>
@@ -76,12 +76,12 @@ export default {
       })
     },
     changeOrder (val) {
-      let data = {
-        table: this.trackChoose[1],
-        order: val
-      }
-      console.log(this.trackChoose)
-      this.GetCheckList(data)
+      console.log(val)
+      // let data = {
+      //   table: this.trackChoose[1],
+      //   order: val
+      // }
+      // this.GetCheckList(data)
     }
   }
 }
@@ -94,39 +94,6 @@ export default {
     
     .table-wrap {
       padding: 0 10px;
-
-      .table-item {
-        margin-top: 20px;
-        box-shadow: 2px 2px solid rgba(0,0,0,0.5)
-      }
-
-      .vux-table {
-        line-height: 1.6
-      }
-
-      .weui-btn_mini {
-        padding: 0 0.8em;
-        line-height: 1.6;
-      }
-
-     .vux-table th {
-        z-index: -1;
-      }
-
-      .more {
-        color: #999;
-      }
-
-      th {
-        height: 25px;
-        background-color: #f5f4f3;
-        color: #a9a9b2;
-      }
-
-      td {
-        height: 30px;
-        color: #434341;
-      }
     }
 
     .weui-select {

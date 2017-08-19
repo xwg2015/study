@@ -7,10 +7,11 @@ Vue.use(LoadingPlugin)
 
 import router from '../router'
 
-const Error = () => {
+const Error = (msg) => {
+  let info = msg || '接口报错'
   Vue.$vux.toast.show({
     type: 'cancel',
-    text: '接口报错！',
+    text: info,
     width: '10em'
   })
 }
@@ -25,17 +26,16 @@ export const Login = ({commit, state}, object) => {
   }
   commit('STATE_LOGINLOADING', true)
   http.post('http://192.168.1.3/admin.php/Public/login', data).then(res => {
-    console.log('res:' + JSON.stringify(res))
-    console.log('status:' + res.status)
-    // if (res.status) {
-    //   commit('STATE_ISLOGIN', true)
-    //   commit('STATE_LOGINLOADING', false)
-    //   router.push({ path: '/check' })
-    // }
-    router.push({ path: '/check' })
+    if (res.data.status) {
+      commit('STATE_ISLOGIN', true)
+      commit('STATE_LOGINLOADING', false)
+      router.push({ path: '/check' })
+    } else {
+      Error(res.data.info)
+      commit('STATE_LOGINLOADING', false)
+    }
   }).catch(() => {
     Error()
-    commit('STATE_ISLOGIN', true)
     commit('STATE_LOGINLOADING', false)
     router.push({ path: '/check' })
   })
@@ -50,9 +50,10 @@ export const GetTrackList = ({commit}) => {
         table: res.data.info[1].value,
         order: 0
       }
+      console.log(data)
       GetCheckList({commit}, data)
     } else {
-      Error()
+      Error(res.data.info)
     }
   }).catch(() => {
     Error()
@@ -67,14 +68,15 @@ export const GetCheckList = ({commit}, object) => {
   Vue.$vux.loading.show({
     text: 'Loading'
   })
+  // commit('STATE_CHECKINFO', {})
   http.post('http://192.168.1.3/admin.php/Warning/showRecord', data).then(res => {
     if (res.data.status) {
+      Vue.$vux.loading.hide()
       commit('STATE_CHECKINFO', res.data.info[0])
       commit('STATE_DIALOGSWITCH', false)
       commit('STATE_TITLE', res.data.info[0].period)
-      Vue.$vux.loading.hide()
     } else {
-      Error()
+      Error(res.data.info)
     }
   }).catch(() => {
     Error()
@@ -100,7 +102,7 @@ export const Check = ({commit, state}, object) => {
       }
       GetCheckList({commit}, refreshData)
     } else {
-      Error()
+      Error(res.data.info)
     }
   }).catch(() => {
     Error()
