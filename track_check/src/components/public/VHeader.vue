@@ -47,73 +47,33 @@
     },
     data () {
       return {
-        trackChoose: ['鹰潭北线路车间', '区间线路结构检查'],
-        trackList: [
-          {
-            name: '萍乡东线路车间',
-            value: '萍乡东线路车间',
-            parent: 0
-          },
-          {
-            name: '萍乡西线路车间',
-            value: '萍乡西线路车间',
-            parent: 0
-          },
-          {
-            name: '萍乡南线路车间',
-            value: '萍乡南线路车间',
-            parent: 0
-          },
-          {
-            name: '萍乡北线路车间',
-            value: '萍乡北线路车间',
-            parent: 0
-          },
-          {
-            name: '区间线路结构检查',
-            value: '区间线路结构检查',
-            parent: '萍乡东线路车间'
-          },
-          {
-            name: '区间线路仪检',
-            value: '区间线路仪检',
-            parent: '萍乡东线路车间'
-          },
-          {
-            name: '区间岔道仪检',
-            value: '区间岔道仪检',
-            parent: '萍乡东线路车间'
-          },
-          {
-            name: '站内胶X绝缘接口电气化性能检查',
-            value: '站内胶X绝缘接口电气化性能检查',
-            parent: '萍乡东线路车间'
-          },
-          {
-            name: '南线路检查',
-            value: '南线路检查',
-            parent: '萍乡南线路车间'
-          },
-          {
-            name: '西线路检查',
-            value: '西线路检查',
-            parent: '萍乡西线路车间'
-          },
-          {
-            name: '北线路检查',
-            value: '北线路检查',
-            parent: '萍乡北线路车间'
-          }
-        ]
       }
     },
     computed: {
       ...mapState({
         isLogin: state => state.isLogin,
-        dialogSwitch: state => state.dialog.switch,
+        dialogSwitchCache: state => state.dialog.switch,
         title: state => state.title,
-        pathName: state => state.pathName
-      })
+        pathName: state => state.pathName,
+        trackList: state => state.trackList,
+        trackChooseCache: state => state.trackChoose
+      }),
+      dialogSwitch: {
+        get () {
+          return this.dialogSwitchCache
+        },
+        set (val) {
+          this.ChangeDialogSwitch(val)
+        }
+      },
+      trackChoose: {
+        get () {
+          return this.trackChooseCache
+        },
+        set (val) {
+          this.ChangeTrackChoose(val)
+        }
+      }
     },
     watch: {
       $route (to, from) {
@@ -123,13 +83,16 @@
     },
     mounted () {
       this.ChangePathName(this.$route.name)
-      this.changeTitle(this.$route.name)
+      this.GetTrackList()
     },
     methods: {
       ...mapActions([
         'ChangeTitle',
         'ChangePathName',
-        'ChangeDialogSwitch'
+        'ChangeDialogSwitch',
+        'GetTrackList',
+        'GetCheckList',
+        'ChangeTrackChoose'
       ]),
       openDialog () {
         this.ChangeDialogSwitch(true)
@@ -137,12 +100,13 @@
       closeDialog () {
         this.ChangeDialogSwitch(false)
       },
-      changeTitle (pathName) {
-        if (pathName === 'check') {
-          this.ChangeTitle(this.trackChoose[0])
-        }
-      },
       handleConfirm () {
+        let data = {
+          table: this.trackChoose[1],
+          order: this.order
+        }
+        console.log(this.trackChoose)
+        this.GetCheckList(data)
       }
     }
   }

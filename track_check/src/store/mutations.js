@@ -26,3 +26,14 @@ export const STATE_PATHNAME = (state, pathName) => {
   state.pathName = pathName
 }
 
+export const STATE_TRACKLIST = (state, trackList) => {
+  state.trackList = trackList
+}
+
+export const STATE_TRACKCHOOSE = (state, trackChoose) => {
+  state.trackChoose = trackChoose
+}
+
+export const STATE_CHECKINFO = (state, checkInfo) => {
+  state.checkInfo = checkInfo
+}

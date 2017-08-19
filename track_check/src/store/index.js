@@ -22,7 +22,13 @@ let state = {
   // 路由
   pathName: '',
   // 当前下标
-  curIndex: 0
+  curIndex: 0,
+  // 检查项目二级联动列表
+  trackList: [],
+  // 已选的检查项目
+  trackChoose: [],
+  // 检查项目详情
+  checkInfo: []
 }
 
 export default new Vuex.Store({

@@ -1,142 +1,44 @@
 <template>
-  <section class="page-check">
+  <section class="page-check" v-if="checkInfo.list">
     <group>
-      <cell title="当前位置" :value="location"></cell>
-      <cell title="检查周期" value="30天"></cell>
-      <selector title="排序方式" :options="orderList" v-model="order"></selector>
+      <cell title="当前位置" :value="checkInfo.tableNameCh"></cell>
+      <cell title="检查周期" :value="`${checkInfo.circleD}天`"></cell>
+      <selector title="排序方式" :options="orderList" v-model="order" @on-change="changeOrder"></selector>
     </group> 
     <div class="table-wrap">
-      <x-table full-bordered class="table-item" v-for="(item, index) in dataList" :key="index">
-        <tr>
-          <th colspan="2" width="20%">序号</th>
-          <th colspan="4" width="40%">班组</th>
-          <th colspan="4" width="40%">检查区段</th>
-        </tr>
-        <tr>
-          <td colspan="2">{{item.key1}}</td>
-          <td colspan="4">{{item.key2}}</td>
-          <td colspan="4">{{item.key3}}</td>
-        </tr>
-        <tr>
-          <th colspan="4" width="40%">最晚检查时间</th>
-          <th colspan="4" width="40%">上一次检查时间</th>
-          <th colspan="2" width="20%">今日检查</th>
-        </tr>
-        <tr>
-          <td colspan="4">{{item.key4}}</td>
-          <td colspan="4">{{item.key7[0]}}</td>
-          <td colspan="2">
-            <x-button mini plain type="primary" @click.native="handleCheck">打卡</x-button>
-          </td>
-        </tr>
-        <tr>
-          <th colspan="5">备注</th>
-          <th colspan="5">历史检查时间</th>
-        </tr>
-        <tr>
-          <td colspan="5">{{item.key6}}</td>
-          <td colspan="5">
-            <x-button mini @click.native="handleMore(index, dataList)">查看</x-button>
-          </td>
-        </tr>
-      </x-table>
-      <divider>我是有底线的</divider>
-      <div v-transfer-dom>
-        <x-dialog v-model="dialogMore" class="dialog" :scroll="false" hide-on-blur>
-          <div class="bd">
-            <timeline>
-              <timeline-item v-for="(i, index) in historyCheck" :key="index">
-                <h4 :class="[i === 0 ? 'recent' : '']">xxx 于 {{i}} 已检查</h4>
-              </timeline-item>
-            </timeline>
-          </div>
-          <div class="ft">
-            <grid :rows="1">
-              <grid-item>
-                <span class="close" @click="dialogMore = false">关闭</span>
-              </grid-item>
-            </grid>
-          </div>
-        </x-dialog>
-      </div>
+      <VCard :data="checkInfo.list" :check-fn="handleCheck"></VCard>
+      <divider v-if="checkInfo.list.length">我是有底线的</divider>
+      <divider v-else>暂无可检查的项目</divider>
     </div>
   </section>
 </template>
 
 <script>
-import { XTable, XButton, Group, Cell, XDialog, TransferDomDirective as TransferDom, Timeline, TimelineItem, Grid, GridItem, Selector, Divider } from 'vux'
-import { mapState } from 'vuex'
+import { Group, Cell, Selector, Divider } from 'vux'
+import { mapState, mapActions } from 'vuex'
+import VCard from './public/VCard'
 
 export default {
   name: 'check',
-  directives: {
-    TransferDom
-  },
   components: {
-    XTable,
-    XButton,
     Group,
     Cell,
-    XDialog,
-    Timeline,
-    TimelineItem,
-    Grid,
-    GridItem,
     Selector,
-    Divider
+    Divider,
+    VCard
   },
   data () {
     return {
-      dialogMore: false,
       filter: false,
-      historyCheck: [],
-      order: '1',
+      order: '0',
       orderList: [
         {
-          key: '1',
+          key: '0',
           value: '默认排序'
         },
         {
-          key: '2',
-          value: '时间排序'
-        }
-      ],
-      dataList: [
-        {
-          key1: 1,
-          key2: '戈阳线路工区1',
-          key3: '533.000-539.000',
-          key4: '2017-08-30',
-          key5: '',
-          key6: '剩余16天',
-          key7: ['2017-07-01', '2017-07-31', '2017-06-20', '2017-06-01']
-        },
-        {
-          key1: 2,
-          key2: '戈阳线路工区2',
-          key3: '533.000-539.000',
-          key4: '2017-08-30',
-          key5: '2017-08-18',
-          key6: '剩余12天',
-          key7: ['2017-07-01', '2017-07-31']
-        },
-        {
-          key1: 3,
-          key2: '戈阳线路工区3',
-          key3: '533.000-539.000',
-          key4: '2017-08-12',
-          key5: '',
-          key6: '已超时2天',
-          key7: ['2017-07-01']
-        },
-        {
-          key1: 4,
-          key2: '戈阳线路工区3',
-          key3: '533.000-539.000',
-          key4: '2017-08-17',
-          key5: '',
-          key6: '剩余3天',
-          key7: ['2017-07-01']
+          key: '1',
+          value: '最晚检查时间排序'
         }
       ]
     }
@@ -144,27 +46,42 @@ export default {
   computed: {
     ...mapState({
       isLogin: state => state.isLogin,
-      location: state => state.location
+      location: state => state.location,
+      checkInfo: state => state.checkInfo,
+      trackChoose: state => state.trackChoose
     })
   },
   mounted () {
   },
   methods: {
-    handleCheck () {
+    ...mapActions([
+      'GetCheckList',
+      'Check'
+    ]),
+    handleCheck (id) {
+      console.log(id)
       const _this = this
       this.$vux.confirm.show({
-        content: '今天是2017-08-28，距离下一次检查还剩5天，确定打卡？',
+        content: `今天${new Date().toLocaleDateString()}, 确认打卡吗？`,
         onCancel () {
           _this.$vux.confirm.hide()
         },
         onConfirm () {
-          console.log(1)
+          let data = {
+            id: id,
+            table: _this.trackChoose[1]
+          }
+          _this.Check(data)
         }
       })
     },
-    handleMore (index, list) {
-      this.dialogMore = true
-      this.historyCheck = list[index].key7
+    changeOrder (val) {
+      let data = {
+        table: this.trackChoose[1],
+        order: val
+      }
+      console.log(this.trackChoose)
+      this.GetCheckList(data)
     }
   }
 }
