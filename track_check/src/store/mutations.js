@@ -37,3 +37,7 @@ export const STATE_TRACKCHOOSE = (state, trackChoose) => {
 export const STATE_CHECKINFO = (state, checkInfo) => {
   state.checkInfo = checkInfo
 }
+
+export const STATE_VERIFYCODE = (state, verifyCode) => {
+  state.verifyCode = verifyCode
+}

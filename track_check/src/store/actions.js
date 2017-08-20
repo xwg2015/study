@@ -25,7 +25,7 @@ export const Login = ({commit, state}, object) => {
     verify_code: Number(object.code)
   }
   commit('STATE_LOGINLOADING', true)
-  http.post('http://192.168.1.3/admin.php/Public/login', data).then(res => {
+  http.post('/admin.php/Public/login', data).then(res => {
     if (res.data.status) {
       commit('STATE_ISLOGIN', true)
       commit('STATE_LOGINLOADING', false)
@@ -33,6 +33,9 @@ export const Login = ({commit, state}, object) => {
     } else {
       Error(res.data.info)
       commit('STATE_LOGINLOADING', false)
+      if (res.data.info === '验证码不正确！') {
+        commit('STATE_VERIFYCODE', state.verifyCode + '?rand=' + Math.random())
+      }
     }
   }).catch(() => {
     Error()
@@ -41,19 +44,34 @@ export const Login = ({commit, state}, object) => {
   })
 }
 
-export const GetTrackList = ({commit}) => {
-  http.post('http://192.168.1.3/admin.php/Warning/getList').then(res => {
+export const GetTrackList = ({commit, state}, pathName) => {
+  if (pathName && pathName !== 'index') {
+    Vue.$vux.loading.show({
+      text: 'Loading'
+    })
+  }
+  http.post('/admin.php/Warning/getList').then(res => {
     if (res.data.status) {
-      commit('STATE_TRACKLIST', res.data.info)
-      commit('STATE_TRACKCHOOSE', [res.data.info[0].value], res.data.info[1].value)
-      let data = {
-        table: res.data.info[1].value,
-        order: 0
+      if (pathName) {
+        // 判断登录
+        commit('STATE_ISLOGIN', true)
+        if (pathName === 'index') {
+          router.push({ name: 'check' })
+        } else {
+          router.push({ name: pathName })
+        }
+      } else {
+        commit('STATE_TRACKLIST', res.data.info)
+        commit('STATE_TRACKCHOOSE', [res.data.info[0].value], res.data.info[1].value)
+        let data = {
+          table: res.data.info[1].value,
+          order: 0
+        }
+        GetCheckList({commit}, data)
       }
-      console.log(data)
-      GetCheckList({commit}, data)
     } else {
       Error(res.data.info)
+      router.push({ name: 'index' })
     }
   }).catch(() => {
     Error()
@@ -68,8 +86,7 @@ export const GetCheckList = ({commit}, object) => {
   Vue.$vux.loading.show({
     text: 'Loading'
   })
-  // commit('STATE_CHECKINFO', {})
-  http.post('http://192.168.1.3/admin.php/Warning/showRecord', data).then(res => {
+  http.post('/admin.php/Warning/showRecord', data).then(res => {
     if (res.data.status) {
       Vue.$vux.loading.hide()
       commit('STATE_CHECKINFO', res.data.info[0])
@@ -89,7 +106,7 @@ export const Check = ({commit, state}, object) => {
     table: object.table
   }
 
-  http.post('http://192.168.1.3/admin.php/Warning/signIn', data).then(res => {
+  http.post('/admin.php/Warning/signIn', data).then(res => {
     if (res.data.status) {
       Vue.$vux.toast.show({
         type: 'success',

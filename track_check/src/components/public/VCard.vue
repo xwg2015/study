@@ -33,12 +33,12 @@
         </tr>
         <tr>
           <template v-if="tab === 'check'" >
-            <td colspan="4" width="40%"><span v-if="item.plan_time">{{item.plan_time.substr(0, 10)}}</span></td>
-            <td colspan="4" width="40%">
+            <td colspan="4" width="35%"><span v-if="item.plan_time">{{item.plan_time.substr(0, 10)}}</span></td>
+            <td colspan="4" width="35%">
               <span v-if="item.history[0]">{{item.history[0].date.substr(0, 10)}}</span>
               <span v-else class="text-no">无</span>
             </td>
-            <td colspan="2" width="20%">
+            <td colspan="2" width="30%">
               <span v-if="item.history[0] && dateFormat(new Date()) === item.history[0].date.substr(0, 10)" :class="`text-status${item.status}`">今日已打卡</span>
               <x-button mini plain type="primary" @click.native="checkFn(item.id)" :class="`btn-status${item.status}`" v-else>打卡</x-button>
             </td>

@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 let state = {
   // 登录状态
-  isLogin: true,
+  isLogin: false,
   // 登录加载状态
   loginLoading: false,
   // 当前位置
@@ -20,7 +20,7 @@ let state = {
   // 标题
   title: '',
   // 路由
-  pathName: '',
+  pathName: 'index',
   // 当前下标
   curIndex: 0,
   // 检查项目二级联动列表
@@ -28,7 +28,9 @@ let state = {
   // 已选的检查项目
   trackChoose: [],
   // 检查项目详情
-  checkInfo: {}
+  checkInfo: {},
+  // 验证码图片
+  verifyCode: '/admin.php/Public/verifyCode'
 }
 
 export default new Vuex.Store({

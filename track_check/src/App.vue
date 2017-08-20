@@ -1,7 +1,7 @@
 <template>
   <div id="app" style="height: 100%;">
     <VHeader v-if="isLogin"></VHeader>
-    <transition mode="out-in">
+    <transition :name="className">
       <router-view :class="isLogin ? 'login-main' : 'unlogin-main'"></router-view>
     </transition>
     <VFooter v-if="isLogin"></VFooter>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import VHeader from './components/public/VHeader'
 import VFooter from './components/public/VFooter'
 
@@ -33,10 +33,18 @@ export default {
       }
     }
   },
+  created () {
+    this.GetTrackList(this.$route.name)
+  },
   computed: {
     ...mapState({
       isLogin: state => state.isLogin
     })
+  },
+  methods: {
+    ...mapActions([
+      'GetTrackList'
+    ])
   }
 }
 </script>
@@ -68,13 +76,13 @@ export default {
     -webkit-overflow-scrolling: touch;
   }
 
-  // .v-enter { opacity: 0; }
-  // .v-enter-to { opacity: 1; }
-  // .v-enter-active { transition: 0.5s;}
+  .v-enter { opacity: 0; }
+  .v-enter-to { opacity: 1; }
+  .v-enter-active { transition: 0.5s;}
 
-  // .v-leave { opacity: 1; }
-  // .v-leave-to { opacity: 0; }
-  // .v-leave-active { transition: 0.5s;}
+  .v-leave { opacity: 1; }
+  .v-leave-to { opacity: 0; }
+  .v-leave-active { transition: 0.5s;}
 
 
   .left-silde-enter {

@@ -51,8 +51,6 @@ export default {
       trackChoose: state => state.trackChoose
     })
   },
-  mounted () {
-  },
   methods: {
     ...mapActions([
       'GetCheckList',
@@ -76,12 +74,11 @@ export default {
       })
     },
     changeOrder (val) {
-      console.log(val)
-      // let data = {
-      //   table: this.trackChoose[1],
-      //   order: val
-      // }
-      // this.GetCheckList(data)
+      let data = {
+        table: this.trackChoose[1],
+        order: val
+      }
+      this.GetCheckList(data)
     }
   }
 }

@@ -25,11 +25,14 @@ export default {
   },
   computed: {
     ...mapState({
+      isLogin: state => state.isLogin,
       checkInfo: state => state.checkInfo
     })
   },
   mounted () {
-    this.GetCheckList({ order: 2 })
+    if (this.isLogin) {
+      this.GetCheckList({ order: 2 })
+    }
   },
   methods: {
     ...mapActions([
