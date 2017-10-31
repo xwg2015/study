@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flexible</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      text-align: center;
+      color: #fff;
+      font-size: 14px!important;
+    }
+
+    .hd {
+      line-height: 1rem;
+      background: red;
+    }
+
+    .bd {
+      display: flex;
+      height: 10rem;
+    }
+
+    .left {
+      width: 2rem;
+      background: blue;
+    }
+
+    .right {
+      width: 8rem;
+      background: green;
+    }
+
+    .ft {
+      line-height: 2rem;
+      background: black;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hd">我是头</header>
+  <section class="bd">
+    <aside class="left">我是侧边</aside>
+    <article class="right">我是文章</article>
+  </section>
+  <footer class="ft">我是尾</footer>
+</body>
+<script src="./flexible.js"></script>
+
+</html>
